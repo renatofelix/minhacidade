@@ -1,0 +1,14 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/enviados"
+        android:title="Meus Envios"
+        android:icon="@drawable/ic_meus" />
+
+    <item android:id="@+id/novos"
+        android:title="Novos"
+        android:icon="@drawable/ic_hot" />
+
+    <item android:id="@+id/resolvidos"
+        android:title="Resolvidos"
+        android:icon="@drawable/ic_done" />
+
+</menu>
