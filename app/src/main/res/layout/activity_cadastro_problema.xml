@@ -32,9 +32,29 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Comentário sobre o problema"
+            android:hint="Descrição sobre o problema"
             android:lines="3"/>
     </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:id="@+id/ivPlace"
+            android:background="@drawable/ic_place"
+            android:layout_centerVertical="true"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/ivPlace"
+            android:layout_marginRight="20dp"
+            android:text="enderecooooooooooo"
+            android:layout_centerVertical="true"/>
+    </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -45,7 +65,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Cadastrar"
+            android:text="Relatar"
             android:layout_alignParentBottom="true"/>
 
     </RelativeLayout>
