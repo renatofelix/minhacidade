@@ -105,11 +105,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_above="@id/tvDeslogar"
+            android:id="@+id/btnMeusEnvios"
             android:text="Meus Envios"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_above="@id/tvDeslogar"
+            android:id="@+id/btnSalvar"
             android:visibility="invisible"
             android:text="Salvar"/>
 
