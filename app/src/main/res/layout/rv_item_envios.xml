@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/ivFoto"
         android:layout_marginLeft="5dp"
-        android:text="Buraco"
+        android:text="Tipo do Problema"
         android:textSize="18sp"
         android:textStyle="bold"
         android:layout_marginStart="5dp" />
@@ -43,7 +43,9 @@
             android:layout_height="wrap_content"
             android:paddingRight="40dp"
             android:layout_centerVertical="true"
-            android:text="Esse buraco está ai a mais de 10 anos e o governo não resolve.... anda povo faz algo!!!" />
+            android:text="Esse buraco está ai a mais de 10 anos e o governo não resolve, anda povo faz algo!!! Pelo amor de Jeova, resolve isso"
+            android:maxLines="2"
+            android:ellipsize="end"/>
     </RelativeLayout>
 
     <TextView

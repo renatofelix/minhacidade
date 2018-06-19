@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="tiposProblemas">
+        <item>Falta de sinalização</item>
+        <item>Entulho terreno baldio</item>
+        <item>Buraco na rua</item>
+        <item>Falta de iluminação</item>
+        <item>Não recolheram o lixo</item>
+    </array>
+</resources>
