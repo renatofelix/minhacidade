@@ -26,7 +26,10 @@
             android:name=".ProblemaActivity"
             android:label="Problema" />
         <activity android:name=".EdicaoProblemaAdmActivity" />
-        <activity android:name=".GerenciarActivity"></activity>
+        <activity android:name=".GerenciarActivity" />
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".CadastrarActivity" />
+        <activity android:name=".MeusEnviosActivity"></activity>
     </application>
 
 </manifest>

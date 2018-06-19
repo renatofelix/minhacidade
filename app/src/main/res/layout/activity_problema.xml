@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -8,79 +8,143 @@
     android:orientation="vertical"
     tools:context="trabalho.aluno.ufg.br.minhacidade.main.MainActivity">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="10dp">
-
-        <TextView
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/tvTipoProblema"
-            android:textSize="18sp"
-            android:text="Tipo do Problema: Buraco"
-            android:layout_centerVertical="true"/>
+            android:orientation="vertical"
+            android:padding="10dp">
 
-        <ImageView
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:background="@drawable/ic_place"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"/>
-    </RelativeLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvTipoProblema"
+                android:textSize="18sp"
+                android:text="Tipo do Problema: Buraco"
+                android:layout_centerVertical="true"/>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="10dp">
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:background="@drawable/ic_place"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"/>
+        </RelativeLayout>
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="130dp"
-            android:background="@color/grey"
-            android:layout_toLeftOf="@id/vCenter"
-            android:layout_below="@id/tvAntes"
-            android:id="@+id/ivFotoAntes"
-            android:src="@drawable/ic_camera"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/tvStatusProblema"
-            android:layout_below="@id/ivFotoAntes"
-            android:textSize="18sp"
-            android:layout_marginTop="10dp"
-            android:text="Status do Problema: Resolvido"/>
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/tvStatusProblema"
-            android:layout_marginTop="5dp"
-            android:layout_below="@id/ivFotoAntes"
-            android:background="@drawable/ic_check"/>
-
-        <TextView
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Comentário sobre o problema"
-            android:id="@+id/tvComentario"
-            android:layout_below="@id/tvStatusProblema"
-            android:textSize="18dp"
-            android:layout_marginTop="10dp"
-            android:lines="3"/>
+            android:orientation="vertical"
+            android:padding="10dp">
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="130dp"
-            android:background="@color/grey"
-            android:layout_toLeftOf="@id/vCenter"
-            android:layout_below="@id/tvComentario"
-            android:id="@+id/ivFotoDepois"
-            android:src="@drawable/ic_camera"
-            android:visibility="invisible"/>
-    </RelativeLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:id="@+id/llFotos">
 
-</LinearLayout>
+                <!--visivel apenas no resolvido-->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Antes"
+                    android:id="@+id/tvAntes"
+                    android:layout_margin="5dp"
+                    android:visibility="gone"
+                    android:gravity="center"/>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="130dp"
+                    android:background="@color/grey"
+                    android:layout_toLeftOf="@id/vCenter"
+                    android:layout_below="@id/tvAntes"
+                    android:id="@+id/ivFotoAntes"
+                    android:src="@drawable/ic_camera"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:orientation="vertical"
+                    android:id="@+id/llFotoDepois">
+                    <!--visivel apenas no resolvido-->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Depois"
+                        android:gravity="center"/>
+
+                    <!--visivel apenas no resolvido-->
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="130dp"
+                        android:background="@color/grey"
+                        android:layout_toLeftOf="@id/vCenter"
+                        android:layout_below="@id/tvComentario"
+                        android:id="@+id/ivFotoDepois"
+                        android:src="@drawable/ic_camera"/>
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Comentário sobre o problema"
+                android:id="@+id/tvComentario"
+                android:layout_below="@id/llFotos"
+                android:textSize="18dp"
+                android:layout_marginTop="10dp"
+                android:lines="3"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvStatusProblema"
+                android:layout_below="@id/tvComentario"
+                android:textSize="18sp"
+                android:layout_marginTop="10dp"
+                android:text="Status do Problema: Resolvido"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/tvStatusProblema"
+                android:layout_marginTop="5dp"
+                android:layout_below="@id/tvComentario"
+                android:id="@+id/ivIconeStatusProblema"
+                android:background="@drawable/ic_check"/>
+
+            <!--visivel repassado e resolvido-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/ivIconeStatusProblema"
+                android:orientation="vertical"
+                android:visibility="gone"
+                android:id="@+id/llRepassado">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/tvResponsavel"
+                    android:text="Responsável: Carmem Juanete"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Comentário da prefeitura"
+                    android:id="@+id/tvComentarioPrefeitura"
+                    android:textSize="18dp"
+                    android:layout_marginTop="10dp"
+                    android:lines="3"/>
+            </LinearLayout>
+
+        </RelativeLayout>
+    </LinearLayout>
+</ScrollView>
