@@ -19,7 +19,7 @@ public class MeusEnviosActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_meus_envios);
+        setContentView(R.layout.fragments_meus_envios);
         
         initRecyclerView(rvMeusEnvios);
     }

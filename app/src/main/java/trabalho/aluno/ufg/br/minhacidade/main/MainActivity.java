@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import trabalho.aluno.ufg.br.minhacidade.GerenciarActivity;
 import trabalho.aluno.ufg.br.minhacidade.PerfilActivity;
 import trabalho.aluno.ufg.br.minhacidade.R;
@@ -24,11 +25,14 @@ public class MainActivity extends AppCompatActivity {
 
     private Fragment fragment;
     private FragmentManager fragmentManager;
+    private FragmentTransaction transaction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        ButterKnife.bind(this);
 
         initBottomNavigationView();
     }
@@ -73,27 +77,29 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initBottomNavigationView() {
-        bottomNavigationView.inflateMenu(R.menu.menu_navigation_bottom);
         fragmentManager = getSupportFragmentManager();
+
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id = item.getItemId();
                 switch (id){
                     case R.id.enviados:
-                        fragment = MainFragment.newInstance(R.layout.fragments_envios, "Enviados");
+                        fragment = new MeusFragment();
+                        transaction = fragmentManager.beginTransaction();
+                        transaction.replace(R.id.main_container, fragment).commit();
                         break;
                     case R.id.novos:
-                        fragment = MainFragment.newInstance(R.layout.fragments_envios, "Novos");
-                        break;
-                    case R.id.resolvidos:
-                        fragment = MainFragment.newInstance(R.layout.fragments_envios, "Resolvidos");
+                        fragment = new NovosFragment();
+                        transaction = fragmentManager.beginTransaction();
+                        transaction.replace(R.id.main_container, fragment).commit();
                         break;
                 }
-                final FragmentTransaction transaction = fragmentManager.beginTransaction();
-                transaction.replace(R.id.main_container, fragment).commit();
                 return true;
             }
         });
+
+        transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.main_container, new NovosFragment()).commit();
     }
 }

@@ -18,15 +18,18 @@
         </activity>
         <activity
             android:name=".PerfilActivity"
-            android:label="Perfil" />
+            android:label="Perfil"
+            android:parentActivityName=".main.MainActivity" />
         <activity
             android:name=".CadastroProblemaActivity"
             android:label="Cadastro" />
         <activity
             android:name=".ProblemaActivity"
-            android:label="Problema" />
+            android:label="Problema"
+            android:parentActivityName=".main.MainActivity"/>
         <activity android:name=".EdicaoProblemaAdmActivity" />
-        <activity android:name=".GerenciarActivity" />
+        <activity android:name=".GerenciarActivity"
+            android:parentActivityName=".main.MainActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".CadastrarActivity" />
         <activity android:name=".MeusEnviosActivity"></activity>

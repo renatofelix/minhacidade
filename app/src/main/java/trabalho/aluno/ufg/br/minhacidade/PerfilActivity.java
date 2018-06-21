@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class PerfilActivity extends AppCompatActivity {
@@ -12,6 +13,15 @@ public class PerfilActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perfil);
+
+        ButterKnife.bind(this);
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+//        onBackPressed();
+        finish();
+        return true;
     }
 
     @OnClick(R.id.tvDeslogar)

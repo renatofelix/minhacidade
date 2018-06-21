@@ -40,7 +40,7 @@ public class CadastrarActivity extends AppCompatActivity {
     @BindView(R.id.tietSenha)
     protected TextInputEditText tietSenha;
 
-    @BindView(R.id.tietSenha)
+    @BindView(R.id.tilSenha)
     protected TextInputLayout tilSenha;
 
     @BindView(R.id.tietConfirmacaoSenha)
