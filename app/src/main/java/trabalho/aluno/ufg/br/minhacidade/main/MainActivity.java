@@ -3,6 +3,8 @@ package trabalho.aluno.ufg.br.minhacidade.main;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -10,10 +12,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import trabalho.aluno.ufg.br.minhacidade.CadastroProblemaActivity;
 import trabalho.aluno.ufg.br.minhacidade.GerenciarActivity;
 import trabalho.aluno.ufg.br.minhacidade.PerfilActivity;
 import trabalho.aluno.ufg.br.minhacidade.R;
@@ -22,6 +26,9 @@ public class MainActivity extends AppCompatActivity {
 
     @BindView(R.id.navigation)
     protected BottomNavigationView bottomNavigationView;
+
+    @BindView(R.id.fabAdicionarProblema)
+    protected FloatingActionButton fabAdicionarProblema;
 
     private Fragment fragment;
     private FragmentManager fragmentManager;
@@ -35,6 +42,17 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         initBottomNavigationView();
+        initFab();
+    }
+
+    private void initFab() {
+        fabAdicionarProblema.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), CadastroProblemaActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
