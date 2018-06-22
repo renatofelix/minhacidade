@@ -23,11 +23,13 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Tipo do Problema:"/>
+            android:text="Tipo do Problema:"
+            android:id="@+id/tvTituloTipoProblema"/>
 
-        <Spinner
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:id="@+id/tvTipoProblema"/>
 
         <EditText
             android:layout_width="match_parent"
