@@ -2,6 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="trabalho.aluno.ufg.br.minhacidade">
 
+    <uses-feature android:name="android.hardware.camera"
+        android:required="true" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!--<uses-permission android:name="android.permission.CAMERA" />-->
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -22,7 +28,8 @@
             android:parentActivityName=".main.MainActivity" />
         <activity
             android:name=".CadastroProblemaActivity"
-            android:label="Cadastro" />
+            android:label="Cadastro"
+            android:parentActivityName=".main.MainActivity" />
         <activity
             android:name=".ProblemaActivity"
             android:label="Problema"

@@ -1,7 +1,9 @@
 package trabalho.aluno.ufg.br.minhacidade.main;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -27,6 +29,8 @@ public class NovosFragment extends Fragment implements ProblemaAdapter.ProblemaA
     @BindView(R.id.rv_problemas)
     protected RecyclerView recyclerView;
 
+    private FloatingActionButton fabAdicionarProblema;
+
     ProblemaAdapter problemaAdapter = new ProblemaAdapter();
 
     List<Problema> problemas = new ArrayList<>();
@@ -44,6 +48,8 @@ public class NovosFragment extends Fragment implements ProblemaAdapter.ProblemaA
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
+
+        fabAdicionarProblema = ((MainActivity)getActivity()).fabAdicionarProblema;
         initRV();
     }
 
@@ -53,6 +59,18 @@ public class NovosFragment extends Fragment implements ProblemaAdapter.ProblemaA
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(problemaAdapter);
+
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                if (dy > 0 && fabAdicionarProblema.getVisibility() == View.VISIBLE) {
+                    fabAdicionarProblema.hide();
+                } else if (dy < 0 && fabAdicionarProblema.getVisibility() != View.VISIBLE) {
+                    fabAdicionarProblema.show();
+                }
+            }
+        });
 
         /// TESTE
         Problema problema = new Problema();

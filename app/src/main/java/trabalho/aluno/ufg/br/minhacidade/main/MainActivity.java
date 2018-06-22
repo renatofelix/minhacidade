@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     protected BottomNavigationView bottomNavigationView;
 
     @BindView(R.id.fabAdicionarProblema)
-    protected FloatingActionButton fabAdicionarProblema;
+    FloatingActionButton fabAdicionarProblema;
 
     private Fragment fragment;
     private FragmentManager fragmentManager;
