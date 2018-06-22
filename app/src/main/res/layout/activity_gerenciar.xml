@@ -18,9 +18,11 @@
             android:id="@+id/tvCategoria"
             android:textSize="17sp"/>
 
-        <Spinner
+        <TextView
             android:layout_width="200dp"
             android:layout_height="wrap_content"
+            android:id="@+id/tvSelecionarTipoProblema"
+            android:text="Selecione uma Categoria"
             android:layout_toRightOf="@id/tvCategoria"/>
 
     </RelativeLayout>

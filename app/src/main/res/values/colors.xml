@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="grey">#9E9E9E</color>
+    <color name="black">#000000</color>
     <color name="cardBackground">#e0e0e0</color>
     <color name="verdePrincipal">#00a15f</color>
     <color name="roxoPrincipal">#623f92</color>

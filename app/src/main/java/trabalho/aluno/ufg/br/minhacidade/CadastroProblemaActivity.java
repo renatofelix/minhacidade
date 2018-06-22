@@ -15,8 +15,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.ui.PlacePicker;
+
 import java.io.IOException;
-import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -40,6 +44,7 @@ public class CadastroProblemaActivity extends AppCompatActivity {
 
     static final int REQUEST_IMAGE_CAPTURE = 1;
     static final int REQUEST_IMAGE_SELECT = 2;
+    static final int REQUEST_PLACE_PICKER = 3;
 
     private Problema problema = new Problema();
     private String[] tiposProblemas;
@@ -76,7 +81,6 @@ public class CadastroProblemaActivity extends AppCompatActivity {
                     case 4:
                         problema.setTipoProblema(TipoProblema.NAO_RECOLHERAM_LIXO);
                         break;
-
                 }
             }
         });
@@ -85,19 +89,21 @@ public class CadastroProblemaActivity extends AppCompatActivity {
 
     @OnClick(R.id.ivFoto)
     public void selecionarFoto(View view) {
-//        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//        Intent photoPickerIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-//        photoPickerIntent.setType("image/*");
-//        startActivityForResult(photoPickerIntent, 10);
-//        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-////            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
-//            startActivityForResult(photoPickerIntent, 10);
-//        }
-        showPictureDialog();
-
+        selecionarFonteDaFotoDialogo();
     }
 
-    private void showPictureDialog(){
+    @OnClick({R.id.rlLocalizacao, R.id.ivPlace, R.id.tvPlace})
+    public void selecionarLocal(View view) {
+        PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
+
+        try {
+            startActivityForResult(builder.build(this), REQUEST_PLACE_PICKER);
+        } catch (GooglePlayServicesRepairableException | GooglePlayServicesNotAvailableException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void selecionarFonteDaFotoDialogo(){
         AlertDialog.Builder pictureDialog = new AlertDialog.Builder(this);
         pictureDialog.setTitle("Selecione ação:");
         String[] pictureDialogItems = {
@@ -109,10 +115,10 @@ public class CadastroProblemaActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         switch (which) {
                             case 0:
-                                choosePhotoFromGallary();
+                                pegarFotoDaGaleria();
                                 break;
                             case 1:
-                                takePhotoFromCamera();
+                                pegarFotoDaCamera();
                                 break;
                         }
                     }
@@ -120,14 +126,14 @@ public class CadastroProblemaActivity extends AppCompatActivity {
         pictureDialog.show();
     }
 
-    public void choosePhotoFromGallary() {
+    public void pegarFotoDaGaleria() {
         Intent galleryIntent = new Intent(Intent.ACTION_PICK,
                 android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
 
         startActivityForResult(galleryIntent, REQUEST_IMAGE_SELECT);
     }
 
-    private void takePhotoFromCamera() {
+    private void pegarFotoDaCamera() {
         Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(intent, REQUEST_IMAGE_CAPTURE);
     }
@@ -172,6 +178,13 @@ public class CadastroProblemaActivity extends AppCompatActivity {
                            Toast.makeText(this, "Failed!", Toast.LENGTH_SHORT).show();
                        }
                    }
+                   break;
+               case REQUEST_PLACE_PICKER:
+                   Place place = PlacePicker.getPlace(data, this);
+                   String toastMsg = String.format("%s", place.getLatLng());
+//                Log.d("lag", String.valueOf(place.getLatLng()));
+                Toast.makeText(this, toastMsg, Toast.LENGTH_LONG).show();
+//                   etLocal.setText(place.getAddress());
                    break;
            }
 
