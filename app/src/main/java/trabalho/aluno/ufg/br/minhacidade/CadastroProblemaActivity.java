@@ -25,7 +25,7 @@ public class CadastroProblemaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cadastro_problema);
     }
 
-    @OnClick
+    @OnClick(R.id.tvTipoProblema)
     public void selecionarTipoProblema(View view) {
         alertDialog = Utils.onCreateSelectDialog(this, R.string.strTituloTipoProblema, R.array.tiposProblemas, new DialogInterface.OnClickListener() {
             @Override
