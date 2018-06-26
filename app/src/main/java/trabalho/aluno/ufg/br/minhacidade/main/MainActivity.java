@@ -1,15 +1,14 @@
 package trabalho.aluno.ufg.br.minhacidade.main;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -67,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent;
         switch (item.getItemId()) {
             case R.id.gerenciar:
-                Toast.makeText(getApplicationContext(),"Gerenciar",Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Gerenciar", Toast.LENGTH_LONG).show();
                 intent = new Intent(this, GerenciarActivity.class);
                 intent.putExtra("ADM", true);
 
@@ -77,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
 
                 return true;
             case R.id.perfil:
-                Toast.makeText(getApplicationContext(),"Perfil",Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Perfil", Toast.LENGTH_LONG).show();
 
                 intent = new Intent(this, PerfilActivity.class);
 //                intent.putExtra("usuario", usuario);
@@ -85,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
                 return true;
             case R.id.sair:
-                Toast.makeText(getApplicationContext(),"Sair", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Sair", Toast.LENGTH_LONG).show();
 
                 //TODO:LOGOUT
                 return true;
@@ -101,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id = item.getItemId();
-                switch (id){
+                switch (id) {
                     case R.id.enviados:
                         fragment = new MeusFragment();
                         transaction = fragmentManager.beginTransaction();
