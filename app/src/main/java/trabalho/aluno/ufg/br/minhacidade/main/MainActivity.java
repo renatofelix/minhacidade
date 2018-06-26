@@ -21,6 +21,9 @@ import trabalho.aluno.ufg.br.minhacidade.GerenciarActivity;
 import trabalho.aluno.ufg.br.minhacidade.PerfilActivity;
 import trabalho.aluno.ufg.br.minhacidade.R;
 
+
+
+
 public class MainActivity extends AppCompatActivity {
 
     @BindView(R.id.navigation)
