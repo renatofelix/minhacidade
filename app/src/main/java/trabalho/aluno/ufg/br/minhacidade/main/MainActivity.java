@@ -20,8 +20,7 @@ import trabalho.aluno.ufg.br.minhacidade.CadastroProblemaActivity;
 import trabalho.aluno.ufg.br.minhacidade.GerenciarActivity;
 import trabalho.aluno.ufg.br.minhacidade.PerfilActivity;
 import trabalho.aluno.ufg.br.minhacidade.R;
-
-
+import trabalho.aluno.ufg.br.minhacidade.modelos.User;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -36,6 +35,9 @@ public class MainActivity extends AppCompatActivity {
     private FragmentManager fragmentManager;
     private FragmentTransaction transaction;
 
+    private boolean usuarioLogado = false;
+    private User usuario;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,11 +45,32 @@ public class MainActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
-        initBottomNavigationView();
+        verificaUsuarioLogado();
+//
+//        initBottomNavigationView();
+//        initFab();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
         initFab();
+        initBottomNavigationView();
+    }
+
+    private void verificaUsuarioLogado() {
+        //TODO: verificar no sharedpreferences se a variavel de usuaro logado e o id existe, se sim ele esta logado
+        //TODO: se tiver logado colocar as informações no objeto usuario
     }
 
     private void initFab() {
+        if (!usuarioLogado) {
+            fabAdicionarProblema.hide();
+        } else {
+            fabAdicionarProblema.show();
+        }
+
         fabAdicionarProblema.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -61,6 +84,15 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);//Menu Resource, Menu
+
+        if (!usuarioLogado) {
+            MenuItem item = menu.findItem(R.id.perfil);
+            item.setVisible(false);
+            MenuItem item2 = menu.findItem(R.id.sair);
+            item2.setVisible(false);
+            MenuItem item3 = menu.findItem(R.id.gerenciar);
+            item3.setVisible(false);
+        }
         return true;
     }
 
@@ -83,7 +115,6 @@ public class MainActivity extends AppCompatActivity {
 
                 intent = new Intent(this, PerfilActivity.class);
 //                intent.putExtra("usuario", usuario);
-
                 startActivity(intent);
                 return true;
             case R.id.sair:
@@ -105,7 +136,12 @@ public class MainActivity extends AppCompatActivity {
                 int id = item.getItemId();
                 switch (id) {
                     case R.id.enviados:
-                        fragment = new MeusFragment();
+                        fragment = new LoginFragment();
+                        item.setTitle("Logar");
+                        if (usuarioLogado) {
+                            fragment = new MeusFragment();
+                            item.setTitle("Meus Envios");
+                        }
                         transaction = fragmentManager.beginTransaction();
                         transaction.replace(R.id.main_container, fragment).commit();
                         break;

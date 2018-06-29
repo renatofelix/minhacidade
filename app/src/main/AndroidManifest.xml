@@ -48,7 +48,7 @@
         <activity
             android:name=".GerenciarActivity"
             android:parentActivityName=".main.MainActivity" />
-        <activity android:name=".LoginActivity" />
+        <activity android:name=".main.LoginFragment" />
         <activity android:name=".CadastrarActivity" />
         <activity
             android:name=".MapsActivity"

@@ -4,6 +4,6 @@
         android:icon="@drawable/ic_hot" />
 
     <item android:id="@+id/enviados"
-        android:title="Meus Envios"
+        android:title="Logar"
         android:icon="@drawable/ic_meus" />
 </menu>

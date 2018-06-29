@@ -1,29 +1,29 @@
-package trabalho.aluno.ufg.br.minhacidade;
+package trabalho.aluno.ufg.br.minhacidade.main;
 
 import android.content.Intent;
 import android.net.Uri;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
+import android.view.ViewGroup;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 
 import org.greenrobot.eventbus.Subscribe;
 
-import trabalho.aluno.ufg.br.minhacidade.utils.Utils;
+import trabalho.aluno.ufg.br.minhacidade.R;
 import trabalho.aluno.ufg.br.minhacidade.web.WebError;
 import trabalho.aluno.ufg.br.minhacidade.web.WebTaskLogin;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginFragment extends Fragment {
 
     @BindView(R.id.tietEmail)
     protected TextInputEditText tietEmail;
@@ -40,77 +40,52 @@ public class LoginActivity extends AppCompatActivity {
     MaterialDialog dialog;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_logar);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragments_logar, container, false);
+        ButterKnife.bind(this, view);
 
-        /*
-        ImageView buttonClose = findViewById(R.id.button_close);
-
-        buttonClose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-*/
         setupButtonRememberPassword();
-        setupButtonRegister();
-        setupLogin();
+
+        return view;
     }
 
-    private void setupButtonRegister() {
+    @OnClick(R.id.btnCadastrar)
+    public void btnCadastrar(View view) {
+        Intent openUrlIntent = new Intent(Intent.ACTION_VIEW);
+        openUrlIntent.setData(
+                Uri.parse("http://www.pudim.com.br"));
+        startActivity(openUrlIntent);
+    }
 
-        Button buttonRegister =
-                findViewById(R.id.btnCadastrar);
-        buttonRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent openUrlIntent = new Intent(Intent.ACTION_VIEW);
-                openUrlIntent.setData(
-                        Uri.parse("http://www.pudim.com.br"));
-                startActivity(openUrlIntent);
-            }
-        });
-
+    @OnClick(R.id.btnLogar)
+    public void btnLogar(View view) {
+        tryLogin();
     }
 
     private void setupButtonRememberPassword() {
     }
 
-    private void setupLogin() {
-        Button buttonLogin =
-                findViewById(R.id.btnLogar);
-        buttonLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                tryLogin();
-            }
-        });
-    }
-
     private void tryLogin() {
-        EditText editTextEmail = findViewById(R.id.tietEmail);
-        EditText editTextPassword = findViewById(R.id.tietSenha);
-
-        if(!"".equals(editTextEmail.getText().toString())){
+        if(!"".equals(tietEmail.getText().toString())){
             showLoading();
-            sendCredentials(editTextEmail.getText().toString(),
-                    editTextPassword.getText().toString());
+            sendCredentials(tietEmail.getText().toString(),
+                    tietSenha.getText().toString());
         }else{
-            editTextEmail.setError("Preencha o campo email");
+            tilEmail.setError("Preencha o campo email");
         }
 
     }
 
+    //TODO: tentei logar com qualquer coisa e ficou um aguarde eterno
     private void sendCredentials(String email, String pass) {
-        WebTaskLogin taskLogin = new WebTaskLogin(this,
+        WebTaskLogin taskLogin = new WebTaskLogin(getContext(),
                 email, pass);
         taskLogin.execute();
     }
 
     private void showLoading(){
-        dialog = new MaterialDialog.Builder(this)
+        dialog = new MaterialDialog.Builder(getContext())
                 .content(R.string.label_wait)
                 .progress(true,0)
                 .cancelable(false)
@@ -129,7 +104,7 @@ public class LoginActivity extends AppCompatActivity {
     @Subscribe
     public void onEvent(WebError error){
         hideLoading();
-        Snackbar.make(findViewById(R.id.container),
+        Snackbar.make(tietEmail,
                 error.getMessage(),
                 Snackbar.LENGTH_LONG).show();
     }
@@ -142,7 +117,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-
+    //TODO: de uma olhada nesse método
     @OnClick(R.id.btnLogar)
     public void logar (View view) {
         //erro email ou senha invalidos

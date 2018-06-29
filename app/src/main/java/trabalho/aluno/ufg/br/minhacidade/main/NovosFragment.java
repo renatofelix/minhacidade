@@ -30,6 +30,7 @@ public class NovosFragment extends Fragment implements ProblemaAdapter.ProblemaA
     protected RecyclerView recyclerView;
 
     private FloatingActionButton fabAdicionarProblema;
+    private boolean usuarioLogado = false;
 
     ProblemaAdapter problemaAdapter = new ProblemaAdapter();
 
@@ -42,6 +43,7 @@ public class NovosFragment extends Fragment implements ProblemaAdapter.ProblemaA
         ButterKnife.bind(this, view);
 
         problemaAdapter.setProblemaAdapterClickListener(this);
+        //TODO: receber se está logado ou nao, verificar no sharedpreferences
 
         return view;
     }
@@ -64,10 +66,12 @@ public class NovosFragment extends Fragment implements ProblemaAdapter.ProblemaA
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-                if (dy > 0 && fabAdicionarProblema.getVisibility() == View.VISIBLE) {
-                    fabAdicionarProblema.hide();
-                } else if (dy < 0 && fabAdicionarProblema.getVisibility() != View.VISIBLE) {
-                    fabAdicionarProblema.show();
+                if (usuarioLogado) {
+                    if (dy > 0 && fabAdicionarProblema.getVisibility() == View.VISIBLE) {
+                        fabAdicionarProblema.hide();
+                    } else if (dy < 0 && fabAdicionarProblema.getVisibility() != View.VISIBLE) {
+                        fabAdicionarProblema.show();
+                    }
                 }
             }
         });
