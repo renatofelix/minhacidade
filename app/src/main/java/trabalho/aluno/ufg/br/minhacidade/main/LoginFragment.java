@@ -61,6 +61,10 @@ public class LoginFragment extends Fragment {
     @OnClick(R.id.btnLogar)
     public void btnLogar(View view) {
         tryLogin();
+
+        //TODO: se logar com sucesso chamar essas duas linhas, para alterar a fragment que apresenta na tela
+        ((MainActivity)getActivity()).usuarioLogado = true;
+        ((MainActivity)getActivity()).mudarParaMeusEnviados();
     }
 
     private void setupButtonRememberPassword() {

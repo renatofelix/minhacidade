@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private FragmentManager fragmentManager;
     private FragmentTransaction transaction;
 
-    private boolean usuarioLogado = false;
+    public boolean usuarioLogado = false;
     private User usuario;
 
     @Override
@@ -137,10 +137,10 @@ public class MainActivity extends AppCompatActivity {
                 switch (id) {
                     case R.id.enviados:
                         fragment = new LoginFragment();
-                        item.setTitle("Logar");
+                        item.setTitle(getResources().getString(R.string.menu_item_logar));
                         if (usuarioLogado) {
+                            item.setTitle(getResources().getString(R.string.menu_item_meus_enviados));
                             fragment = new MeusFragment();
-                            item.setTitle("Meus Envios");
                         }
                         transaction = fragmentManager.beginTransaction();
                         transaction.replace(R.id.main_container, fragment).commit();
@@ -157,5 +157,14 @@ public class MainActivity extends AppCompatActivity {
 
         transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.main_container, new NovosFragment()).commit();
+    }
+
+    public void mudarParaMeusEnviados() {
+        MenuItem item = bottomNavigationView.getMenu().getItem(R.id.enviados);
+        item.setTitle(getResources().getString(R.string.menu_item_meus_enviados));
+
+        fragment = new MeusFragment();
+        transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.main_container, fragment).commit();
     }
 }

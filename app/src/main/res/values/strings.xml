@@ -6,4 +6,6 @@
     <string name="strTituloTipoProblema">Escolha um tipo de problema:</string>
     <string name="title_activity_maps">Map</string>
     <string name="label_wait">Aguarde</string>
+    <string name="menu_item_meus_enviados">Meus Enviados</string>
+    <string name="menu_item_logar">Logar</string>
 </resources>
