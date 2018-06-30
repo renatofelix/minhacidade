@@ -160,7 +160,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void mudarParaMeusEnviados() {
-        MenuItem item = bottomNavigationView.getMenu().getItem(R.id.enviados);
+        MenuItem item = bottomNavigationView.getMenu().findItem(R.id.enviados);
         item.setTitle(getResources().getString(R.string.menu_item_meus_enviados));
 
         fragment = new MeusFragment();

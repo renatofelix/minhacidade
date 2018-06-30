@@ -7,7 +7,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import trabalho.aluno.ufg.br.minhacidade.modelos.Usuario;
 
 public class WebTaskLogin extends WebTaskBase {
 
@@ -64,8 +67,9 @@ public class WebTaskLogin extends WebTaskBase {
 
         try {
             JSONObject nameAsJSON = new JSONObject(response);
-            String name = nameAsJSON.getString("name");
-            EventBus.getDefault().post(name);
+            String login = nameAsJSON.getString("login");
+            List<Usuario> usuario = (List<Usuario>) nameAsJSON.getJSONObject("users");
+            EventBus.getDefault().post(usuario);
         } catch (JSONException e) {
             EventBus.getDefault().post(
                     new WebError(

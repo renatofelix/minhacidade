@@ -26,7 +26,7 @@ public abstract class WebTaskBase extends AsyncTask<Void, Void, Void> {
 
     private static int TIMEOUT = 20;
 //    private static String BASE_URL = "http://private-3281f0-login178.apiary-mock.com/";
-    private static String BASE_URL = "http://private-424b6e-sus1.apiary-mock.com/";
+    private static String BASE_URL = "http://private-c107e-minhacidade.apiary-mock.com/";
 
     private String serviceURL;
     private Context context;
