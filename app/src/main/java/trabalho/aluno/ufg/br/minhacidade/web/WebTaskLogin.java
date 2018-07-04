@@ -1,16 +1,21 @@
 package trabalho.aluno.ufg.br.minhacidade.web;
 
 import android.content.Context;
+import android.util.Log;
 
 import org.greenrobot.eventbus.EventBus;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import trabalho.aluno.ufg.br.minhacidade.modelos.Usuario;
+
+import static android.icu.lang.UCharacter.GraphemeClusterBreak.L;
 
 public class WebTaskLogin extends WebTaskBase {
 
@@ -41,40 +46,44 @@ public class WebTaskLogin extends WebTaskBase {
     @Override
     void handleResponse(String response) {
 
-        //Se quiser fazer leitura automatica, busque usar a biblioteca GSON DE ANDROID
-
-
-//        try {
-//            JSONObject requestAsJSON = new JSONObject(response);
-//            String status = requestAsJSON.getString("status");
-//            JSONArray reclamacoesAsJSON = requestAsJSON.getJSONArray("reclamacoes");
-//
-//            for(int index = 0; index < reclamacoesAsJSON.length(); index++){
-//                reclamacaoAsJSON = reclamacoesAsJSON.getJSONObject(index);
-//                String ideReclamacao = reclamacaoAsJSON.getString("id_reclamacao");
-//
-//
-//
-//            }
-//
-//
-//        } catch (JSONException e) {
-//            EventBus.getDefault().post(
-//                    new WebError(
-//                            "Resposta inválida do servidor", URL));
-//        }
-
-
         try {
             JSONObject nameAsJSON = new JSONObject(response);
-            String login = nameAsJSON.getString("login");
-            List<Usuario> usuario = (List<Usuario>) nameAsJSON.getJSONObject("users");
+            //nameAsJSON = nameAsJSON.getJSONObject("users");
+            JSONArray usuarioJson = nameAsJSON.getJSONArray("users");
+            //String login = nameAsJSON.getString("login");
+            List<Usuario> usuario = new ArrayList<>();
+            usuario = ConvertJsonToUsuario(usuario,usuarioJson);
             EventBus.getDefault().post(usuario);
         } catch (JSONException e) {
+            //throw new RuntimeException(e);
             EventBus.getDefault().post(
                     new WebError(
                             "Resposta inválida do servidor", URL));
         }
+    }
+
+    private List<Usuario> ConvertJsonToUsuario(List<Usuario> user , JSONArray JsonUserArray) throws JSONException {
+
+
+        for(int i=0; i<JsonUserArray.length(); i++){
+            JSONObject json_data = JsonUserArray.getJSONObject(i);
+            Usuario usuario = new Usuario();
+            usuario.setLogin(json_data.getString("login"));
+            usuario.setUsertype(json_data.getString("usertype"));
+            usuario.setPassword(json_data.getString("password"));
+            usuario.setId(json_data.getString("id"));
+
+            Log.i("log_tag", "login" + json_data.getString("login") +
+                    ", usertype" + json_data.getString("usertype") +
+                    ", password" + json_data.getString("password")
+            );
+
+            user.add(usuario);
+        }
+            return user;
+
+        //usuario.setLogin(JsonUserArray.getString(0).toString());
+
     }
 
     @Override

@@ -5,9 +5,6 @@ import android.os.Parcelable;
 
 import java.util.Date;
 
-/**
- * Created by johnn on 19/06/2018.
- */
 
 public class Problema implements Parcelable {
 
@@ -17,6 +14,54 @@ public class Problema implements Parcelable {
     Date data = new Date();
     String linkImagem;
     String localizacao;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
+    public String getResponsavel() {
+        return responsavel;
+    }
+
+    public void setResponsavel(String responsavel) {
+        this.responsavel = responsavel;
+    }
+
+    public String getComentario() {
+        return comentario;
+    }
+
+    public void setComentario(String comentario) {
+        this.comentario = comentario;
+    }
+
+    public String getFotoresponsavel() {
+        return fotoresponsavel;
+    }
+
+    public void setFotoresponsavel(String fotoresponsavel) {
+        this.fotoresponsavel = fotoresponsavel;
+    }
+
+    String id;
+    String img;
+    String responsavel;
+    String comentario;
+    String fotoresponsavel;
+
+
 
     public Problema() {
     }

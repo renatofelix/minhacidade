@@ -5,7 +5,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -44,6 +47,8 @@ public class MeusProblemasAdapter extends RecyclerViewProject<Problema> {
 
         ItemViewHolder viewHolder = (ItemViewHolder) holder;
 
+        Picasso.get().load(getItem(position).getLinkImagem())
+                .resize(200, 200).centerCrop().into(viewHolder.ivFoto);
 //        viewHolder.tvTipoProblema.setText(getItem(position).getTipoProblema().toString());
 
     }
@@ -54,6 +59,10 @@ public class MeusProblemasAdapter extends RecyclerViewProject<Problema> {
 
 //        @BindView(R.id.tvTipoProblema)
 //        TextView tvTipoProblema;
+
+        @BindView(R.id.ivFoto)
+        ImageView ivFoto;
+
 
         ItemViewHolder(Context context, View v) {
             super(v);

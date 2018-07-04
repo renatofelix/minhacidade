@@ -1,6 +1,8 @@
 package trabalho.aluno.ufg.br.minhacidade.main;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputEditText;
@@ -17,9 +19,13 @@ import butterknife.OnClick;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 
+import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
+import java.util.List;
+
 import trabalho.aluno.ufg.br.minhacidade.R;
+import trabalho.aluno.ufg.br.minhacidade.modelos.Usuario;
 import trabalho.aluno.ufg.br.minhacidade.web.WebError;
 import trabalho.aluno.ufg.br.minhacidade.web.WebTaskLogin;
 
@@ -38,6 +44,8 @@ public class LoginFragment extends Fragment {
     protected TextInputLayout tilSenha;
 
     MaterialDialog dialog;
+    SharedPreferences sharedPref;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -46,6 +54,8 @@ public class LoginFragment extends Fragment {
         ButterKnife.bind(this, view);
 
         setupButtonRememberPassword();
+
+        sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
 
         return view;
     }
@@ -61,10 +71,6 @@ public class LoginFragment extends Fragment {
     @OnClick(R.id.btnLogar)
     public void btnLogar(View view) {
         tryLogin();
-
-        //TODO: se logar com sucesso chamar essas duas linhas, para alterar a fragment que apresenta na tela
-        ((MainActivity)getActivity()).usuarioLogado = true;
-        ((MainActivity)getActivity()).mudarParaMeusEnviados();
     }
 
     private void setupButtonRememberPassword() {
@@ -81,7 +87,6 @@ public class LoginFragment extends Fragment {
 
     }
 
-    //TODO: tentei logar com qualquer coisa e ficou um aguarde eterno
     private void sendCredentials(String email, String pass) {
         WebTaskLogin taskLogin = new WebTaskLogin(getContext(),
                 email, pass);
@@ -97,13 +102,58 @@ public class LoginFragment extends Fragment {
     }
 
     @Subscribe
-    public void onEvent(String response){
+    public void onEvent(List<Usuario> response){
         hideLoading();
-        Intent openUrlIntent = new Intent(Intent.ACTION_VIEW);
-        openUrlIntent.setData(
-                Uri.parse("http://www.freescreencleaner.com/"));
-        startActivity(openUrlIntent);
+//        Intent openUrlIntent = new Intent(Intent.ACTION_VIEW);
+//        openUrlIntent.setData(
+//                Uri.parse("http://www.freescreencleaner.com/"));
+//        startActivity(openUrlIntent);
+
+        //TODO: verificar login e senha
+        if(VerificarUsuario(response))
+        {
+
+
+
+        //TODO: salvar no sharedpreferences se o usuario esta logado, ou todas as informacoes do usuario
+
+        //TODO: se logar com sucesso chamar essas duas linhas, para alterar a fragment que apresenta na tela
+        ((MainActivity)getActivity()).usuarioLogado = true;
+        ((MainActivity)getActivity()).mudarParaMeusEnviados();
+        }
     }
+
+    private boolean VerificarUsuario(List<Usuario> response)
+    {
+        String email = tietEmail.getText().toString();
+        String senha = tietSenha.getText().toString();
+        Usuario usuarioRef;
+
+        List<Usuario> user = response;
+
+        for (Usuario usuarios: user)
+        {
+            if(usuarios.getLogin().equals(email) && usuarios.getPassword().equals(senha)) {
+
+                SharedPreferences.Editor editor = sharedPref.edit();
+
+                editor.putString(getString(R.string.email), email);
+                editor.putString(getString(R.string.senha), senha);
+                editor.putString(getString(R.string.id), usuarios.getId());
+                editor.putString(getString(R.string.usertype), usuarios.getUsertype());
+
+                editor.apply();
+
+                return true;
+            }
+        }
+
+        Snackbar.make(tietEmail, "Login ou senha incorretos", Snackbar.LENGTH_LONG).show();
+
+                return false;
+    }
+
+
 
     @Subscribe
     public void onEvent(WebError error){
@@ -120,6 +170,17 @@ public class LoginFragment extends Fragment {
         }
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onStop() {
+        EventBus.getDefault().unregister(this);
+        super.onStop();
+    }
 
     //TODO: de uma olhada nesse método
     @OnClick(R.id.btnLogar)

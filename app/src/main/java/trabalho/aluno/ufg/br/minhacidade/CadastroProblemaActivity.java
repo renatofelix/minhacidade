@@ -9,6 +9,7 @@ import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -182,7 +183,7 @@ public class CadastroProblemaActivity extends AppCompatActivity {
                case REQUEST_PLACE_PICKER:
                    Place place = PlacePicker.getPlace(data, this);
                    String toastMsg = String.format("%s", place.getLatLng());
-//                Log.d("lag", String.valueOf(place.getLatLng()));
+                Log.d("lag", String.valueOf(place.getLatLng()));
                 Toast.makeText(this, toastMsg, Toast.LENGTH_LONG).show();
 //                   etLocal.setText(place.getAddress());
                    break;

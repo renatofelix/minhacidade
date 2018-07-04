@@ -8,6 +8,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -15,9 +21,6 @@ import trabalho.aluno.ufg.br.minhacidade.R;
 import trabalho.aluno.ufg.br.minhacidade.modelos.Problema;
 import trabalho.aluno.ufg.br.minhacidade.utils.RecyclerViewProject;
 
-/**
- * Created by Jonathas Eloi
- */
 
 public class ProblemaAdapter extends RecyclerViewProject<Problema> {
 
@@ -57,6 +60,15 @@ public class ProblemaAdapter extends RecyclerViewProject<Problema> {
 
         viewHolder.tvTipoProblema.setText(getItem(position).getTipoProblema().toString());
 
+        Picasso.get().load(getItem(position).getLinkImagem())
+                .resize(200, 300).centerCrop().into(viewHolder.ivFoto);
+
+        viewHolder.tvDescricaoProblema.setText(getItem(position).getDescricao().toString());
+
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+
+        viewHolder.tvDataProblema.setText(df.format(getItem(position).getData()));
+
     }
 
     protected class ItemViewHolder extends RecyclerView.ViewHolder {
@@ -65,6 +77,15 @@ public class ProblemaAdapter extends RecyclerViewProject<Problema> {
 
         @BindView(R.id.tvTipoProblema)
         TextView tvTipoProblema;
+
+        @BindView(R.id.ivFoto)
+        ImageView ivFoto;
+
+        @BindView(R.id.tvDescricaoProblema)
+        TextView tvDescricaoProblema;
+
+        @BindView(R.id.tvDataProblema)
+        TextView tvDataProblema;
 
         @OnClick(R.id.rlProblema)
         public void onClickEvento(){

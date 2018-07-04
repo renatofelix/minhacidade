@@ -10,6 +10,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.afollestad.materialdialogs.MaterialDialog;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +26,7 @@ import trabalho.aluno.ufg.br.minhacidade.adapters.ProblemaAdapter;
 import trabalho.aluno.ufg.br.minhacidade.modelos.Problema;
 import trabalho.aluno.ufg.br.minhacidade.modelos.TipoProblema;
 import trabalho.aluno.ufg.br.minhacidade.utils.GridSpacingItemDecoration;
+import trabalho.aluno.ufg.br.minhacidade.web.WebTaskProblema;
 
 public class MeusFragment extends Fragment {
 
@@ -30,6 +36,7 @@ public class MeusFragment extends Fragment {
     MeusProblemasAdapter meusProblemasAdapter = new MeusProblemasAdapter();
 
     private List<Problema> problemas = new ArrayList<>();
+    MaterialDialog dialog;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -45,6 +52,40 @@ public class MeusFragment extends Fragment {
         initRV();
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        pegarProblemas();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onStop() {
+        EventBus.getDefault().unregister(this);
+        super.onStop();
+    }
+
+    @Subscribe
+    public void onEvent(List<Problema> response){
+        hideLoading();
+
+        //Adicionar problemas no adapter
+        meusProblemasAdapter.clear();
+        meusProblemasAdapter.addAll(response);
+    }
+
+    private void hideLoading(){
+        if(dialog != null && dialog.isShowing()){
+            dialog.hide();
+            dialog = null;
+        }
+    }
+
     private void initRV() {
         recyclerView.addItemDecoration(new GridSpacingItemDecoration(1, 0, false));
         recyclerView.setHasFixedSize(true);
@@ -54,16 +95,12 @@ public class MeusFragment extends Fragment {
 
         /// TESTE
         Problema problema = new Problema();
-
-        problemas.add(problema);
-        problemas.add(problema);
-        problemas.add(problema);
-        problemas.add(problema);
-        problemas.add(problema);
-        ///
-
-        //Adicionar problemas no adapter
-        meusProblemasAdapter.addAll(problemas);
     }
+
+    private void pegarProblemas() {
+        WebTaskProblema taskProblemas = new WebTaskProblema(getContext());
+        taskProblemas.execute();
+    }
+
 
 }

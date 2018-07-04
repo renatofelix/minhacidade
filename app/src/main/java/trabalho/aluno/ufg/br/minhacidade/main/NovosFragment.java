@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,6 +12,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.afollestad.materialdialogs.MaterialDialog;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +28,11 @@ import trabalho.aluno.ufg.br.minhacidade.R;
 import trabalho.aluno.ufg.br.minhacidade.adapters.ProblemaAdapter;
 import trabalho.aluno.ufg.br.minhacidade.modelos.Problema;
 import trabalho.aluno.ufg.br.minhacidade.modelos.TipoProblema;
+import trabalho.aluno.ufg.br.minhacidade.modelos.Usuario;
 import trabalho.aluno.ufg.br.minhacidade.utils.GridSpacingItemDecoration;
+import trabalho.aluno.ufg.br.minhacidade.web.WebError;
+import trabalho.aluno.ufg.br.minhacidade.web.WebTaskLogin;
+import trabalho.aluno.ufg.br.minhacidade.web.WebTaskProblema;
 
 public class NovosFragment extends Fragment implements ProblemaAdapter.ProblemaAdapterClickListener {
 
@@ -33,6 +43,7 @@ public class NovosFragment extends Fragment implements ProblemaAdapter.ProblemaA
     private boolean usuarioLogado = false;
 
     ProblemaAdapter problemaAdapter = new ProblemaAdapter();
+    MaterialDialog dialog;
 
     List<Problema> problemas = new ArrayList<>();
 
@@ -43,9 +54,49 @@ public class NovosFragment extends Fragment implements ProblemaAdapter.ProblemaA
         ButterKnife.bind(this, view);
 
         problemaAdapter.setProblemaAdapterClickListener(this);
-        //TODO: receber se está logado ou nao, verificar no sharedpreferences
 
         return view;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onStop() {
+        EventBus.getDefault().unregister(this);
+        super.onStop();
+    }
+
+    @Subscribe
+    public void onEvent(List<Problema> response){
+        hideLoading();
+
+        //Adicionar problemas no adapter
+        problemaAdapter.clear();
+        problemaAdapter.addAll(response);
+    }
+
+    private void pegarProblemas() {
+        WebTaskProblema taskProblemas = new WebTaskProblema(getContext());
+        taskProblemas.execute();
+    }
+
+    private void showLoading(){
+        dialog = new MaterialDialog.Builder(getContext())
+                .content(R.string.label_wait)
+                .progress(true,0)
+                .cancelable(false)
+                .show();
+    }
+
+    private void hideLoading(){
+        if(dialog != null && dialog.isShowing()){
+            dialog.hide();
+            dialog = null;
+        }
     }
 
     @Override
@@ -53,6 +104,12 @@ public class NovosFragment extends Fragment implements ProblemaAdapter.ProblemaA
 
         fabAdicionarProblema = ((MainActivity)getActivity()).fabAdicionarProblema;
         initRV();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        pegarProblemas();
     }
 
     private void initRV() {
@@ -75,21 +132,6 @@ public class NovosFragment extends Fragment implements ProblemaAdapter.ProblemaA
                 }
             }
         });
-
-        /// TESTE
-        Problema problema = new Problema();
-        problema.setTipoProblema(TipoProblema.BURACO);
-
-        problemas.add(problema);
-        problemas.add(problema);
-        problemas.add(problema);
-        problemas.add(problema);
-        problemas.add(problema);
-        problemas.add(problema);
-        ///
-
-        //Adicionar problemas no adapter
-        problemaAdapter.addAll(problemas);
     }
 
     @Override

@@ -8,4 +8,11 @@
     <string name="label_wait">Aguarde</string>
     <string name="menu_item_meus_enviados">Meus Enviados</string>
     <string name="menu_item_logar">Logar</string>
+
+
+    <string name="email">Email</string>
+    <string name="senha">Senha</string>
+    <string name="id">ID</string>
+    <string name="usertype">UserType</string>
+
 </resources>

@@ -14,8 +14,6 @@ import java.util.List;
 
 import okhttp3.Response;
 
-
-
 public class WebTodo extends WebConnection{
 
     private static final String SERVICE = "todos";
