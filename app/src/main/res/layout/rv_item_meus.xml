@@ -7,8 +7,7 @@
     <ImageView
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:id="@+id/ivFoto"
-        android:background="@drawable/ic_camera"/>
+        android:id="@+id/ivFoto"/>
 
     <RelativeLayout
         android:layout_width="200dp"
@@ -20,7 +19,6 @@
             android:id="@+id/ivProcesso"
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
-            android:background="@drawable/ic_check"
             android:layout_margin="20dp"/>
     </RelativeLayout>
 

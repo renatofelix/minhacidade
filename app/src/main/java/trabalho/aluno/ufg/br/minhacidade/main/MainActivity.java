@@ -143,7 +143,6 @@ public class MainActivity extends AppCompatActivity {
         Intent intent;
         switch (item.getItemId()) {
             case R.id.gerenciar:
-                Toast.makeText(getApplicationContext(), "Gerenciar", Toast.LENGTH_LONG).show();
                 intent = new Intent(this, GerenciarActivity.class);
                 intent.putExtra("ADM", true);
 
@@ -153,14 +152,11 @@ public class MainActivity extends AppCompatActivity {
 
                 return true;
             case R.id.perfil:
-                Toast.makeText(getApplicationContext(), "Perfil", Toast.LENGTH_LONG).show();
-
                 intent = new Intent(this, PerfilActivity.class);
                 intent.putExtra("usuario", usuario);
                 startActivity(intent);
                 return true;
             case R.id.sair:
-                Toast.makeText(getApplicationContext(), "Sair", Toast.LENGTH_LONG).show();
 
                 //TODO:LOGOUT
                 return true;
