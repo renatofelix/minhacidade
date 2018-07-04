@@ -142,7 +142,7 @@ public class MeusFragment extends Fragment {
         taskProblemas.execute();
     }
 
-    @OnClick(R.id.tvTipoProblema)
+    @OnClick(R.id.tvSelecionarTipoProblema)
     public void selecionarTipoProblema(View view) {
         alertDialog = Utils.onCreateSelectDialog(getActivity(), R.string.strTituloTipoProblema, R.array.tiposProblemas, new DialogInterface.OnClickListener() {
             @Override
