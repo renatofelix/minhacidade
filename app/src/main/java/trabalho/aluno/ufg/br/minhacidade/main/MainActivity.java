@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
     public boolean usuarioLogado = false;
 
-    SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
+
 
 //    private User usuario;
     private Usuario usuario = new Usuario();
@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
     private void verificaUsuarioLogado() {
         //TODO: verificar no sharedpreferences se a variavel de usuaro logado e o id existe, se sim ele esta logado
         //TODO: se tiver logado colocar as informações no objeto usuario
-
+        SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
 
 
         String id = sharedPref.getString(getString(R.string.id),null);
@@ -163,6 +163,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.sair:
                 mudarParaLogar();
                 usuarioLogado = false;
+                SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPref.edit();
 
                 editor.putString("Id", null);

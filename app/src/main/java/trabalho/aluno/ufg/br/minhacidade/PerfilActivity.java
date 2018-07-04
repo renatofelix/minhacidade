@@ -11,6 +11,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,6 +37,9 @@ public class PerfilActivity extends AppCompatActivity {
 
     @BindView(R.id.tietNome)
     protected TextInputEditText tietNome;
+
+    @BindView(R.id.btnSalvar)
+    protected Button btnSalvar;
 
     @BindView(R.id.tietCPF)
     protected TextInputEditText tietCPF;
@@ -122,6 +127,7 @@ public class PerfilActivity extends AppCompatActivity {
 
         editMode = true;
 
+        btnSalvar.setVisibility(View.GONE);
         tietNome.setEnabled(true);
         tietEmail.setEnabled(true);
         tietCPF.setEnabled(true);
