@@ -13,4 +13,4 @@ Projeto em desenvolvimento para a matéria de DSDM do curso de Ciências da Comp
 * [Layouts](https://ninjamock.com/s/GW935Rx) - Visualizar os esboços criados para entrega
 
 ## Apiary
-* [MinhaCidade](https://private-c107e-minhacidade.apiary-mock.com/) - Visualizar as requisições utilizadas no projeto
+* [MinhaCidade](https://minhacidade.docs.apiary.io/) - Visualizar as requisições utilizadas no projeto
