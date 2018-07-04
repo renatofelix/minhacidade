@@ -9,7 +9,9 @@
     <color name="verdePrincipal">#00a15f</color>
     <color name="roxoPrincipal">#623f92</color>
     
-    <color name="verde">#52a063</color>
+    <color name="verde">#227636</color>
     <color name="roxoEscuro">#3d3064</color>
     <color name="roxoClaro">#59418d</color>
+    <color name="verdeClaro">#60c473</color>
+    <color name="cinzaclaro">#ECECEC</color>
 </resources>

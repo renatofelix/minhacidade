@@ -3,15 +3,14 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="5dp"
-    android:layout_marginBottom="5dp"
+
     android:id="@+id/rlProblema"
-    android:background="@color/cardBackground">
+    android:background="@color/verdeClaro">
 
     <ImageView
         android:id="@+id/ivFoto"
         android:layout_width="match_parent"
-        android:layout_height="140dp"
+        android:layout_height="200dp"
         android:background="@color/grey"/>
 
     <TextView
@@ -19,16 +18,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/ivFoto"
-        android:layout_marginLeft="5dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
         android:text="Tipo do Problema"
-        android:textSize="18sp"
+        android:textSize="22sp"
         android:textStyle="bold"
-        android:layout_marginStart="5dp" />
+        android:textColor="@color/cinzaclaro"
+        android:layout_marginStart="16dp" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_margin="17dp"
         android:layout_below="@id/tvTipoProblema">
         <ImageView
             android:id="@+id/ivPlace"
@@ -44,6 +45,8 @@
             android:layout_height="wrap_content"
             android:paddingRight="40dp"
             android:layout_centerVertical="true"
+            android:textSize="18sp"
+            android:textColor="@color/cinzaclaro"
             android:text="Esse buraco está ai a mais de 10 anos e o governo não resolve, anda povo faz algo!!! Pelo amor de Jeova, resolve isso"
             android:maxLines="2"
             android:ellipsize="end"/>
@@ -54,10 +57,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/ivFoto"
-        android:layout_marginRight="5dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
         android:layout_alignParentRight="true"
+        android:textColor="@color/cinzaclaro"
         android:textSize="18sp"
         android:text="12/12/2018"
-        android:layout_marginEnd="5dp"
+        android:layout_marginEnd="10dp"
         android:layout_alignParentEnd="true" />
 </RelativeLayout>

@@ -41,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
 
     public boolean usuarioLogado = false;
 
+    MenuItem sup;
+
 
 
 //    private User usuario;
@@ -101,6 +103,16 @@ public class MainActivity extends AppCompatActivity {
             usuario.setResolvidos(resolvidos);
 
             usuarioLogado = true;
+
+
+
+            if(usuario.getUsertype().equals("admin"))
+            {
+                MenuItem item3 = (MenuItem)findViewById(R.id.gerenciar);
+                item3.setVisible(true);
+                invalidateOptionsMenu();
+            }
+
         }
 
     }
@@ -132,12 +144,8 @@ public class MainActivity extends AppCompatActivity {
             MenuItem item2 = menu.findItem(R.id.sair);
             item2.setVisible(false);
             MenuItem item3 = menu.findItem(R.id.gerenciar);
+            sup = item3;
             item3.setVisible(false);
-        } else {
-            if(usuario.getUsertype().equals("admin")) {
-                MenuItem item3 = menu.findItem(R.id.gerenciar);
-                item3.setVisible(true);
-            }
         }
         return true;
     }
@@ -166,8 +174,11 @@ public class MainActivity extends AppCompatActivity {
                 SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPref.edit();
 
-                editor.putString("Id", null);
-                editor.putStringSet("id", null);
+                editor.putString(getString(R.string.id), null);
+
+                editor.apply();
+
+                mudarParaLogar();
                 //TODO:LOGOUT
                 return true;
             default:

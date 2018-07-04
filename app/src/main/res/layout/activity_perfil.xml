@@ -126,13 +126,15 @@
                 android:visibility="invisible"
                 android:text="Salvar"/>
 
-            <TextView
+            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/tvDeslogar"
+                android:id="@+id/btnDeslogar"
                 android:padding="15dp"
                 android:layout_centerInParent="true"
                 android:layout_below="@id/btnSalvar"
+                android:background="@color/roxoEscuro"
+                android:textColor="@color/cinzaclaro"
                 android:text="Deslogar"/>
 
 

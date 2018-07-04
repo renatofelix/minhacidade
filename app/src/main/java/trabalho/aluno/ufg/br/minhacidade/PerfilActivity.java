@@ -108,17 +108,20 @@ public class PerfilActivity extends AppCompatActivity {
         }
     }
 
-    @OnClick(R.id.tvDeslogar)
+    @OnClick(R.id.btnDeslogar)
     public void deslogar(View view) {
         usuario = null;
         SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putStringSet("id", null);
-        usuario.setId("");
+
+        editor.apply();
+
+        /*usuario.setId("");
         usuario.setNome("");
         usuario.setCpf("");
         usuario.setEmail("");
-        usuario.setPassword("");
+        usuario.setPassword("");*/
     }
 
     @OnClick(R.id.ivEdit)
@@ -127,7 +130,7 @@ public class PerfilActivity extends AppCompatActivity {
 
         editMode = true;
 
-        btnSalvar.setVisibility(View.GONE);
+        btnSalvar.setVisibility(View.VISIBLE);
         tietNome.setEnabled(true);
         tietEmail.setEnabled(true);
         tietCPF.setEnabled(true);
@@ -140,7 +143,12 @@ public class PerfilActivity extends AppCompatActivity {
 
     @OnClick(R.id.btnSalvar)
     public void salvar(View view) {
+        editMode = false;
 
+        btnSalvar.setVisibility(View.GONE);
+        tietNome.setEnabled(false);
+        tietEmail.setEnabled(false);
+        tietCPF.setEnabled(false);
     }
 
     @Override
