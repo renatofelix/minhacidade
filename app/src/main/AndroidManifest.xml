@@ -44,7 +44,9 @@
             android:name=".ProblemaActivity"
             android:label="Problema"
             android:parentActivityName=".main.MainActivity" />
-        <activity android:name=".EdicaoProblemaAdmActivity" />
+        <activity android:name=".EdicaoProblemaAdmActivity"
+            android:label="Responder Problema"
+            android:parentActivityName=".main.MainActivity" />
         <activity
             android:name=".GerenciarActivity"
             android:parentActivityName=".main.MainActivity" />
