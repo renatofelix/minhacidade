@@ -152,6 +152,7 @@ public class CadastroProblemaActivity extends AppCompatActivity {
 
         problema.setDescricao(etDescricaoProblema.getText().toString());
 
+        finish();
         //Se todos os campos estiverem preenchidos e colocados no objeto problema, fazer chamada para salvar o objeto
     }
 
@@ -168,9 +169,9 @@ public class CadastroProblemaActivity extends AppCompatActivity {
            switch (requestCode) {
                case REQUEST_IMAGE_CAPTURE:
                    Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
-//                   imageview.setImageBitmap(thumbnail);
+                   ivFoto.setImageBitmap(thumbnail);
 //                   saveImage(thumbnail);
-                   Toast.makeText(this, "Image Saved!", Toast.LENGTH_SHORT).show();
+//                   Toast.makeText(this, "Image Saved!", Toast.LENGTH_SHORT).show();
 
                    break;
                case REQUEST_IMAGE_SELECT:
@@ -179,12 +180,12 @@ public class CadastroProblemaActivity extends AppCompatActivity {
                        try {
                            Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), contentURI);
 //                           String path = saveImage(bitmap);
-                           Toast.makeText(this, "Image Saved!", Toast.LENGTH_SHORT).show();
-//                           imageview.setImageBitmap(bitmap);
+//                           Toast.makeText(this, "Image Saved!", Toast.LENGTH_SHORT).show();
+                           ivFoto.setImageBitmap(bitmap);
 
                        } catch (IOException e) {
                            e.printStackTrace();
-                           Toast.makeText(this, "Failed!", Toast.LENGTH_SHORT).show();
+//                           Toast.makeText(this, "Failed!", Toast.LENGTH_SHORT).show();
                        }
                    }
                    break;
