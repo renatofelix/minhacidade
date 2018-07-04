@@ -10,4 +10,4 @@ Projeto em desenvolvimento para a matéria de DSDM do curso de Ciências da Comp
 * [GoogleMapsApi]() - Para carregar e selecionar uma localização no mapa
 
 ## Link Para as imagens dos layout básicos
-* [Acesso aos Layouts](link: https://ninjamock.com/s/GW935Rx) - Visualizar os esboços criados para entrega
+* [Layouts](link: https://ninjamock.com/s/GW935Rx) - Visualizar os esboços criados para entrega
