@@ -36,6 +36,7 @@ public class WebTaskProblema extends WebTaskBase {
     private String FIELD_COMMENT = "comentario";
     private String FIELD_PHOTO = "fotoresponsavel";
     private String FIELD_LOCATION = "localizacao";
+    private String FIELD_ADRESS = "endereco";
     private String FIELD_DATA = "data";
 
 
@@ -115,6 +116,7 @@ public class WebTaskProblema extends WebTaskBase {
             problema.setComentario(json_data.getString("comentario"));
             problema.setFotoresponsavel(json_data.getString("fotoresponsavel"));
             problema.setLocalizacao(json_data.getString("localizacao"));
+            problema.setEndereco(json_data.getString("endereco"));
             problema.setData(formato.parse(json_data.getString("data")));
 
             problemas.add(problema);

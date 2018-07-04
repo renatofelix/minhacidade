@@ -32,6 +32,7 @@ public class ProblemaAdapter extends RecyclerViewProject<Problema> {
 
     public interface ProblemaAdapterClickListener {
         void OnClickAbrirProblema(int position);
+        void OnClickAbrirLocalizacao(int position);
     }
 
     public ProblemaAdapter() {
@@ -90,6 +91,11 @@ public class ProblemaAdapter extends RecyclerViewProject<Problema> {
         @OnClick(R.id.rlProblema)
         public void onClickEvento(){
             problemaAdapterClickListener.OnClickAbrirProblema(getAdapterPosition());
+        }
+
+        @OnClick(R.id.ivPlace)
+        public void onClickPlaceEvento(){
+            problemaAdapterClickListener.OnClickAbrirLocalizacao(getAdapterPosition());
         }
 
         ItemViewHolder(Context context, View v) {

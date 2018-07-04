@@ -1,5 +1,7 @@
 package trabalho.aluno.ufg.br.minhacidade;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -114,6 +116,11 @@ public class ProblemaActivity extends AppCompatActivity {
 
     @OnClick(R.id.ivLocalizacao)
     public void abrirLocalizacao(View view) {
+        String geo = "geo:0,0?q=" + problema.getLocalizacao() + "(" + problema.getEndereco() + ")";
+        Uri gmmIntentUri = Uri.parse(geo);
+        Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+        mapIntent.setPackage("com.google.android.apps.maps");
+        startActivity(mapIntent);
 
     }
 }

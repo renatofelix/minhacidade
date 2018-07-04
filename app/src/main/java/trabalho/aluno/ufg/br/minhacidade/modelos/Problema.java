@@ -14,6 +14,7 @@ public class Problema implements Parcelable {
     Date data = new Date();
     String linkImagem;
     String localizacao;
+    String endereco;
 
     public String getId() {
         return id;
@@ -114,6 +115,14 @@ public class Problema implements Parcelable {
         this.localizacao = localizacao;
     }
 
+    public String getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -127,6 +136,7 @@ public class Problema implements Parcelable {
         dest.writeLong(this.data != null ? this.data.getTime() : -1);
         dest.writeString(this.linkImagem);
         dest.writeString(this.localizacao);
+        dest.writeString(this.endereco);
         dest.writeString(this.id);
         dest.writeString(this.img);
         dest.writeString(this.responsavel);
@@ -144,6 +154,7 @@ public class Problema implements Parcelable {
         this.data = tmpData == -1 ? null : new Date(tmpData);
         this.linkImagem = in.readString();
         this.localizacao = in.readString();
+        this.endereco = in.readString();
         this.id = in.readString();
         this.img = in.readString();
         this.responsavel = in.readString();
