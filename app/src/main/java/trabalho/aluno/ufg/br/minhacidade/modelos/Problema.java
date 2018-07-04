@@ -114,7 +114,6 @@ public class Problema implements Parcelable {
         this.localizacao = localizacao;
     }
 
-    //Faz o Parce do objeto para poder transferir ele entre activits
     @Override
     public int describeContents() {
         return 0;
@@ -128,6 +127,11 @@ public class Problema implements Parcelable {
         dest.writeLong(this.data != null ? this.data.getTime() : -1);
         dest.writeString(this.linkImagem);
         dest.writeString(this.localizacao);
+        dest.writeString(this.id);
+        dest.writeString(this.img);
+        dest.writeString(this.responsavel);
+        dest.writeString(this.comentario);
+        dest.writeString(this.fotoresponsavel);
     }
 
     protected Problema(Parcel in) {
@@ -140,9 +144,14 @@ public class Problema implements Parcelable {
         this.data = tmpData == -1 ? null : new Date(tmpData);
         this.linkImagem = in.readString();
         this.localizacao = in.readString();
+        this.id = in.readString();
+        this.img = in.readString();
+        this.responsavel = in.readString();
+        this.comentario = in.readString();
+        this.fotoresponsavel = in.readString();
     }
 
-    public static final Parcelable.Creator<Problema> CREATOR = new Parcelable.Creator<Problema>() {
+    public static final Creator<Problema> CREATOR = new Creator<Problema>() {
         @Override
         public Problema createFromParcel(Parcel source) {
             return new Problema(source);

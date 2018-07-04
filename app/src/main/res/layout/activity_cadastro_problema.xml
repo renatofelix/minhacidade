@@ -58,7 +58,7 @@
             android:layout_toRightOf="@id/ivPlace"
             android:layout_marginRight="20dp"
             android:id="@+id/tvPlace"
-            android:text="enderecooooooooooo"
+            android:hint="Selecione um endereçco"
             android:layout_centerVertical="true"/>
     </RelativeLayout>
 

@@ -23,7 +23,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/tvTipoProblema"
                 android:textSize="18sp"
-                android:text="Tipo do Problema: Buraco"
+                android:text=""
                 android:layout_centerVertical="true"/>
 
             <ImageView
@@ -31,6 +31,7 @@
                 android:layout_height="45dp"
                 android:background="@drawable/ic_place"
                 android:layout_alignParentRight="true"
+                android:id="@+id/ivLocalizacao"
                 android:layout_centerVertical="true"/>
         </RelativeLayout>
 
@@ -62,8 +63,8 @@
                     android:background="@color/grey"
                     android:layout_toLeftOf="@id/vCenter"
                     android:layout_below="@id/tvAntes"
-                    android:id="@+id/ivFotoAntes"
-                    android:src="@drawable/ic_camera"/>
+                    android:layout_gravity="center_vertical"
+                    android:id="@+id/ivFotoAntes"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -94,7 +95,6 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Comentário sobre o problema"
                 android:id="@+id/tvComentario"
                 android:layout_below="@id/llFotos"
                 android:textSize="18dp"
@@ -108,7 +108,7 @@
                 android:layout_below="@id/tvComentario"
                 android:textSize="18sp"
                 android:layout_marginTop="10dp"
-                android:text="Status do Problema: Resolvido"/>
+                android:text=""/>
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -116,8 +116,7 @@
                 android:layout_toRightOf="@id/tvStatusProblema"
                 android:layout_marginTop="5dp"
                 android:layout_below="@id/tvComentario"
-                android:id="@+id/ivIconeStatusProblema"
-                android:background="@drawable/ic_check"/>
+                android:id="@+id/ivIconeStatusProblema"/>
 
             <!--visivel repassado e resolvido-->
             <LinearLayout

@@ -69,8 +69,6 @@ public class MainActivity extends AppCompatActivity {
 
         SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
 
-
-
         String id = sharedPref.getString(getString(R.string.id),null);
 
         if(id!=null)
@@ -85,12 +83,11 @@ public class MainActivity extends AppCompatActivity {
             usuario.setPassword(senha);
 
             usuarioLogado = true;
-
         }
 
     }
 
-    private void initFab() {
+    public void initFab() {
         if (!usuarioLogado) {
             fabAdicionarProblema.hide();
         } else {
@@ -118,6 +115,11 @@ public class MainActivity extends AppCompatActivity {
             item2.setVisible(false);
             MenuItem item3 = menu.findItem(R.id.gerenciar);
             item3.setVisible(false);
+        } else {
+            if(usuario.getUsertype().equals("admin")) {
+                MenuItem item3 = menu.findItem(R.id.gerenciar);
+                item3.setVisible(true);
+            }
         }
         return true;
     }
@@ -180,6 +182,9 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+        MenuItem item = bottomNavigationView.getMenu().findItem(R.id.enviados);
+        item.setTitle(getResources().getString(R.string.menu_item_meus_enviados));
 
         transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.main_container, new NovosFragment()).commit();

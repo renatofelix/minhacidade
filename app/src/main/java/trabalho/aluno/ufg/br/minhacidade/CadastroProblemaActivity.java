@@ -35,6 +35,9 @@ public class CadastroProblemaActivity extends AppCompatActivity {
     @BindView(R.id.tvTipoProblema)
     protected TextView tvTipoProblema;
 
+    @BindView(R.id.tvPlace)
+    protected TextView tvPlace;
+
     @BindView(R.id.etDescricaoProblema)
     protected EditText etDescricaoProblema;
 
@@ -183,9 +186,9 @@ public class CadastroProblemaActivity extends AppCompatActivity {
                case REQUEST_PLACE_PICKER:
                    Place place = PlacePicker.getPlace(data, this);
                    String toastMsg = String.format("%s", place.getLatLng());
-                Log.d("lag", String.valueOf(place.getLatLng()));
-                Toast.makeText(this, toastMsg, Toast.LENGTH_LONG).show();
-//                   etLocal.setText(place.getAddress());
+                   Log.d("lag", String.valueOf(place.getLatLng()));
+//                   Toast.makeText(this, toastMsg, Toast.LENGTH_LONG).show();
+                   tvPlace.setText(place.getAddress());
                    break;
            }
 

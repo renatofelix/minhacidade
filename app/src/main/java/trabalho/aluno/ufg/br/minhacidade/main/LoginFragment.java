@@ -120,6 +120,7 @@ public class LoginFragment extends Fragment {
         //TODO: se logar com sucesso chamar essas duas linhas, para alterar a fragment que apresenta na tela
         ((MainActivity)getActivity()).usuarioLogado = true;
         ((MainActivity)getActivity()).mudarParaMeusEnviados();
+        ((MainActivity)getActivity()).initFab();
         }
     }
 

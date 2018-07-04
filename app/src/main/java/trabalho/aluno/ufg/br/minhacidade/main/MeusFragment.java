@@ -1,5 +1,7 @@
 package trabalho.aluno.ufg.br.minhacidade.main;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -25,6 +27,7 @@ import trabalho.aluno.ufg.br.minhacidade.adapters.MeusProblemasAdapter;
 import trabalho.aluno.ufg.br.minhacidade.adapters.ProblemaAdapter;
 import trabalho.aluno.ufg.br.minhacidade.modelos.Problema;
 import trabalho.aluno.ufg.br.minhacidade.modelos.TipoProblema;
+import trabalho.aluno.ufg.br.minhacidade.modelos.Usuario;
 import trabalho.aluno.ufg.br.minhacidade.utils.GridSpacingItemDecoration;
 import trabalho.aluno.ufg.br.minhacidade.web.WebTaskProblema;
 
@@ -38,6 +41,9 @@ public class MeusFragment extends Fragment {
     private List<Problema> problemas = new ArrayList<>();
     MaterialDialog dialog;
 
+    private Usuario usuario = new Usuario();
+    private boolean usuarioLogado = false;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -49,6 +55,7 @@ public class MeusFragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
+        verificaUsuarioLogado();
         initRV();
     }
 
@@ -95,6 +102,29 @@ public class MeusFragment extends Fragment {
 
         /// TESTE
         Problema problema = new Problema();
+    }
+
+    private void verificaUsuarioLogado() {
+        //TODO: verificar no sharedpreferences se a variavel de usuaro logado e o id existe, se sim ele esta logado
+        //TODO: se tiver logado colocar as informações no objeto usuario
+
+        SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
+
+        String id = sharedPref.getString(getString(R.string.id),null);
+
+        if(id!=null)
+        {
+            String senha = sharedPref.getString(getString(R.string.senha),null);
+            String login = sharedPref.getString(getString(R.string.email),null);
+            String userType = sharedPref.getString(getString(R.string.usertype),null);
+
+            usuario.setLogin(login);
+            usuario.setId(id);
+            usuario.setUsertype(userType);
+            usuario.setPassword(senha);
+
+            usuarioLogado = true;
+        }
     }
 
     private void pegarProblemas() {

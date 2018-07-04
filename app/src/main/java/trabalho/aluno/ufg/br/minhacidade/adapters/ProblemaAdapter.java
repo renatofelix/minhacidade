@@ -61,7 +61,7 @@ public class ProblemaAdapter extends RecyclerViewProject<Problema> {
         viewHolder.tvTipoProblema.setText(getItem(position).getTipoProblema().toString());
 
         Picasso.get().load(getItem(position).getLinkImagem())
-                .resize(200, 300).centerCrop().into(viewHolder.ivFoto);
+               .fit().into(viewHolder.ivFoto);
 
         viewHolder.tvDescricaoProblema.setText(getItem(position).getDescricao().toString());
 
