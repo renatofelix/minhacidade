@@ -1,9 +1,12 @@
 package trabalho.aluno.ufg.br.minhacidade.main;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,6 +14,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 
@@ -22,6 +26,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import trabalho.aluno.ufg.br.minhacidade.R;
 import trabalho.aluno.ufg.br.minhacidade.adapters.MeusProblemasAdapter;
 import trabalho.aluno.ufg.br.minhacidade.adapters.ProblemaAdapter;
@@ -29,12 +34,16 @@ import trabalho.aluno.ufg.br.minhacidade.modelos.Problema;
 import trabalho.aluno.ufg.br.minhacidade.modelos.TipoProblema;
 import trabalho.aluno.ufg.br.minhacidade.modelos.Usuario;
 import trabalho.aluno.ufg.br.minhacidade.utils.GridSpacingItemDecoration;
+import trabalho.aluno.ufg.br.minhacidade.utils.Utils;
 import trabalho.aluno.ufg.br.minhacidade.web.WebTaskProblema;
 
 public class MeusFragment extends Fragment {
 
     @BindView(R.id.rvMeusEnvios)
     protected RecyclerView recyclerView;
+
+    @BindView(R.id.tvSelecionarTipoProblema)
+    protected TextView tvSelecionarTipoProblema;
 
     MeusProblemasAdapter meusProblemasAdapter = new MeusProblemasAdapter();
 
@@ -43,6 +52,7 @@ public class MeusFragment extends Fragment {
 
     private Usuario usuario = new Usuario();
     private boolean usuarioLogado = false;
+    private Dialog alertDialog;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -132,5 +142,31 @@ public class MeusFragment extends Fragment {
         taskProblemas.execute();
     }
 
-
+    @OnClick(R.id.tvTipoProblema)
+    public void selecionarTipoProblema(View view) {
+        alertDialog = Utils.onCreateSelectDialog(getActivity(), R.string.strTituloTipoProblema, R.array.tiposProblemas, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                //salvar tipo na variavel problema
+                switch (i) {
+                    case 0:
+                        tvSelecionarTipoProblema.setText(TipoProblema.FALTA_SINALIZACAO.toString());
+                        break;
+                    case 1:
+                        tvSelecionarTipoProblema.setText(TipoProblema.ENTULHO_TERRENO_BALDIO.toString());
+                        break;
+                    case 2:
+                        tvSelecionarTipoProblema.setText(TipoProblema.BURACO.toString());
+                        break;
+                    case 3:
+                        tvSelecionarTipoProblema.setText(TipoProblema.FALTA_ILUMINACAO.toString());
+                        break;
+                    case 4:
+                        tvSelecionarTipoProblema.setText(TipoProblema.NAO_RECOLHERAM_LIXO.toString());
+                        break;
+                }
+            }
+        });
+        alertDialog.show();
+    }
 }

@@ -3,16 +3,35 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Spinner
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:id="@+id/sCategorias"/>
+        android:gravity="center_horizontal"
+        android:id="@+id/rlCategoria"
+        android:layout_marginTop="10dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Categoria"
+            android:id="@+id/tvCategoria"
+            android:textSize="17sp"/>
+
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvSelecionarTipoProblema"
+            android:text="Selecione uma Categoria"
+            android:layout_toRightOf="@id/tvCategoria"
+            android:textSize="17sp"
+            android:layout_marginLeft="20dp"/>
+
+    </RelativeLayout>
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/sCategorias"
+        android:layout_below="@id/rlCategoria"
+        android:layout_marginTop="5dp"
         android:id="@+id/rvMeusEnvios"/>
 
 </RelativeLayout>

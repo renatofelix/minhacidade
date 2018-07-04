@@ -73,12 +73,10 @@ public class PerfilActivity extends AppCompatActivity {
                         try {
                             Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), contentURI);
 //                           String path = saveImage(bitmap);
-                            Toast.makeText(this, "Image Saved!", Toast.LENGTH_SHORT).show();
 //                           imageview.setImageBitmap(bitmap);
 
                         } catch (IOException e) {
                             e.printStackTrace();
-                            Toast.makeText(this, "Failed!", Toast.LENGTH_SHORT).show();
                         }
                     }
                     break;

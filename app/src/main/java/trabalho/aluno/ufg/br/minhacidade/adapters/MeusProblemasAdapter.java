@@ -51,6 +51,18 @@ public class MeusProblemasAdapter extends RecyclerViewProject<Problema> {
                 .fit().into(viewHolder.ivFoto);
 //        viewHolder.tvTipoProblema.setText(getItem(position).getTipoProblema().toString());
 
+        switch (getItem(position).getTipoStatus()) {
+            case RESOLVIDO:
+                viewHolder.ivProcesso.setImageDrawable(getContext().getResources().getDrawable(R.drawable.ic_check));
+                break;
+            case REPASSADO:
+                viewHolder.ivProcesso.setImageDrawable(getContext().getResources().getDrawable(R.drawable.ic_arrow_forward));
+                break;
+            case PENDENTE:
+                viewHolder.ivProcesso.setImageDrawable(getContext().getResources().getDrawable(R.drawable.ic_action_clock));
+                break;
+        }
+
     }
 
     protected class ItemViewHolder extends RecyclerView.ViewHolder {
@@ -63,6 +75,8 @@ public class MeusProblemasAdapter extends RecyclerViewProject<Problema> {
         @BindView(R.id.ivFoto)
         ImageView ivFoto;
 
+        @BindView(R.id.ivProcesso)
+        ImageView ivProcesso;
 
         ItemViewHolder(Context context, View v) {
             super(v);
