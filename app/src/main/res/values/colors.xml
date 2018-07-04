@@ -8,4 +8,8 @@
     <color name="cardBackground">#e0e0e0</color>
     <color name="verdePrincipal">#00a15f</color>
     <color name="roxoPrincipal">#623f92</color>
+    
+    <color name="verde">#52a063</color>
+    <color name="roxoEscuro">#3d3064</color>
+    <color name="roxoClaro">#59418d</color>
 </resources>

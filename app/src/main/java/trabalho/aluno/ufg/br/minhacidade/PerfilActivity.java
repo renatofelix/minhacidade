@@ -1,6 +1,8 @@
 package trabalho.aluno.ufg.br.minhacidade;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.MediaStore;
@@ -9,6 +11,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +37,9 @@ public class PerfilActivity extends AppCompatActivity {
 
     @BindView(R.id.tietNome)
     protected TextInputEditText tietNome;
+
+    @BindView(R.id.btnSalvar)
+    protected Button btnSalvar;
 
     @BindView(R.id.tietCPF)
     protected TextInputEditText tietCPF;
@@ -104,7 +111,9 @@ public class PerfilActivity extends AppCompatActivity {
     @OnClick(R.id.tvDeslogar)
     public void deslogar(View view) {
         usuario = null;
-
+        SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putStringSet("id", null);
         usuario.setId("");
         usuario.setNome("");
         usuario.setCpf("");
@@ -118,6 +127,7 @@ public class PerfilActivity extends AppCompatActivity {
 
         editMode = true;
 
+        btnSalvar.setVisibility(View.GONE);
         tietNome.setEnabled(true);
         tietEmail.setEnabled(true);
         tietCPF.setEnabled(true);
