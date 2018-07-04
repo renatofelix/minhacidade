@@ -40,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
 
     public boolean usuarioLogado = false;
 
+    SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
+
 //    private User usuario;
     private Usuario usuario = new Usuario();
 
@@ -69,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         //TODO: verificar no sharedpreferences se a variavel de usuaro logado e o id existe, se sim ele esta logado
         //TODO: se tiver logado colocar as informações no objeto usuario
 
-        SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
+
 
         String id = sharedPref.getString(getString(R.string.id),null);
 
@@ -157,7 +159,12 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
                 return true;
             case R.id.sair:
+                mudarParaLogar();
+                usuarioLogado = false;
+                SharedPreferences.Editor editor = sharedPref.edit();
 
+                editor.putString("Id", null);
+                editor.putStringSet("id", null);
                 //TODO:LOGOUT
                 return true;
             default:
@@ -205,6 +212,15 @@ public class MainActivity extends AppCompatActivity {
         item.setTitle(getResources().getString(R.string.menu_item_meus_enviados));
 
         fragment = new MeusFragment();
+        transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.main_container, fragment).commit();
+    }
+
+    public void mudarParaLogar() {
+        MenuItem item = bottomNavigationView.getMenu().findItem(R.id.enviados);
+        item.setTitle(getResources().getString(R.string.menu_item_logar));
+
+        fragment = new LoginFragment();
         transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.main_container, fragment).commit();
     }

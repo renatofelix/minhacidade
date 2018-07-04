@@ -1,6 +1,8 @@
 package trabalho.aluno.ufg.br.minhacidade;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.MediaStore;
@@ -104,7 +106,9 @@ public class PerfilActivity extends AppCompatActivity {
     @OnClick(R.id.tvDeslogar)
     public void deslogar(View view) {
         usuario = null;
-
+        SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putStringSet("id", null);
         usuario.setId("");
         usuario.setNome("");
         usuario.setCpf("");
