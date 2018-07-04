@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -63,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
 
         verificaUsuarioLogado();
+        invalidateOptionsMenu();
         initFab();
         initBottomNavigationView();
     }
@@ -214,6 +216,8 @@ public class MainActivity extends AppCompatActivity {
         fragment = new MeusFragment();
         transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.main_container, fragment).commit();
+
+        invalidateOptionsMenu();
     }
 
     public void mudarParaLogar() {
