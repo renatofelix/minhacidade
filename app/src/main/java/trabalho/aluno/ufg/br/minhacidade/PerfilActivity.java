@@ -64,13 +64,9 @@ public class PerfilActivity extends AppCompatActivity {
         //Todo: pegar o usuario igual pegar problema na tela problemaactivity
         usuario = getIntent().getParcelableExtra("usuario");
 
-        tietNome.setText(usuario.getNome().toString());
-        tietEmail.setText(usuario.getEmail().toString());
-        tietCPF.setText(usuario.getCpf());
-        tvEnviados.setText("Enviados: "+usuario.getEnviados());
-        tvResolvidos.setText("Resolvidos: "+usuario.getResolvidos());
-
-        initViews(usuario);
+        if (usuario != null) {
+            initViews(usuario);
+        }
     }
 
     private void initViews(Usuario usuario) {

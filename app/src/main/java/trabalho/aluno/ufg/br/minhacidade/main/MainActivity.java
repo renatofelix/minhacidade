@@ -41,10 +41,6 @@ public class MainActivity extends AppCompatActivity {
 
     public boolean usuarioLogado = false;
 
-    MenuItem sup;
-
-
-
 //    private User usuario;
     private Usuario usuario = new Usuario();
 
@@ -108,8 +104,6 @@ public class MainActivity extends AppCompatActivity {
 
             if(usuario.getUsertype().equals("admin"))
             {
-                MenuItem item3 = (MenuItem)findViewById(R.id.gerenciar);
-                item3.setVisible(true);
                 invalidateOptionsMenu();
             }
 
@@ -144,8 +138,12 @@ public class MainActivity extends AppCompatActivity {
             MenuItem item2 = menu.findItem(R.id.sair);
             item2.setVisible(false);
             MenuItem item3 = menu.findItem(R.id.gerenciar);
-            sup = item3;
             item3.setVisible(false);
+        } else {
+            if (usuario != null && usuario.getUsertype() != null && usuario.getUsertype().equals("admin")) {
+                MenuItem item3 = menu.findItem(R.id.gerenciar);
+                item3.setVisible(true);
+            }
         }
         return true;
     }
@@ -215,7 +213,11 @@ public class MainActivity extends AppCompatActivity {
         });
 
         MenuItem item = bottomNavigationView.getMenu().findItem(R.id.enviados);
-        item.setTitle(getResources().getString(R.string.menu_item_meus_enviados));
+        if (usuarioLogado) {
+            item.setTitle(getResources().getString(R.string.menu_item_meus_enviados));
+        } else {
+            item.setTitle(getResources().getString(R.string.menu_item_logar));
+        }
 
         transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.main_container, new NovosFragment()).commit();
@@ -235,9 +237,14 @@ public class MainActivity extends AppCompatActivity {
     public void mudarParaLogar() {
         MenuItem item = bottomNavigationView.getMenu().findItem(R.id.enviados);
         item.setTitle(getResources().getString(R.string.menu_item_logar));
+        if (bottomNavigationView.getSelectedItemId() == R.id.enviados) {
 
-        fragment = new LoginFragment();
-        transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.main_container, fragment).commit();
+
+            fragment = new LoginFragment();
+            transaction = fragmentManager.beginTransaction();
+            transaction.replace(R.id.main_container, fragment).commit();
+        }
+
+        invalidateOptionsMenu();
     }
 }

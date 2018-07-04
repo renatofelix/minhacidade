@@ -15,6 +15,11 @@ public class Problema implements Parcelable {
     String linkImagem;
     String localizacao;
     String endereco;
+    String id;
+    String img;
+    String responsavel;
+    String comentario;
+    String fotoresponsavel;
 
     public String getId() {
         return id;
@@ -55,14 +60,6 @@ public class Problema implements Parcelable {
     public void setFotoresponsavel(String fotoresponsavel) {
         this.fotoresponsavel = fotoresponsavel;
     }
-
-    String id;
-    String img;
-    String responsavel;
-    String comentario;
-    String fotoresponsavel;
-
-
 
     public Problema() {
     }

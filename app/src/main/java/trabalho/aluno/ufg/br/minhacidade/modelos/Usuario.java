@@ -106,6 +106,9 @@ public class Usuario implements Parcelable {
         this.password = password;
     }
 
+    public Usuario() {
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -125,9 +128,6 @@ public class Usuario implements Parcelable {
         dest.writeString(this.resolvidos);
     }
 
-    public Usuario() {
-    }
-
     protected Usuario(Parcel in) {
         this.login = in.readString();
         this.usertype = in.readString();
@@ -141,7 +141,7 @@ public class Usuario implements Parcelable {
         this.resolvidos = in.readString();
     }
 
-    public static final Parcelable.Creator<Usuario> CREATOR = new Parcelable.Creator<Usuario>() {
+    public static final Creator<Usuario> CREATOR = new Creator<Usuario>() {
         @Override
         public Usuario createFromParcel(Parcel source) {
             return new Usuario(source);
