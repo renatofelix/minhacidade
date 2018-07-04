@@ -4,6 +4,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="strTituloTipoProblema">Escolha um tipo de problema:</string>
+    <string name="strTituloStatusProblema">Escolha um status para o problema:</string>
     <string name="title_activity_maps">Map</string>
     <string name="label_wait">Aguarde</string>
     <string name="menu_item_meus_enviados">Meus Enviados</string>

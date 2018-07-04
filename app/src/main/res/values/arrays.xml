@@ -7,4 +7,9 @@
         <item>Falta de iluminação</item>
         <item>Não recolheram o lixo</item>
     </array>
+    <array name="statusProblemas">
+        <item>Pendente</item>
+        <item>Repassado</item>
+        <item>Resolvido</item>
+    </array>
 </resources>

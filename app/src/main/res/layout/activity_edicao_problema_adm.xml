@@ -32,6 +32,7 @@
             android:background="@color/grey"
             android:layout_toLeftOf="@id/vCenter"
             android:layout_below="@id/tvAntes"
+            android:id="@+id/ivFotoAntes"
             android:src="@drawable/ic_camera"/>
 
         <TextView
@@ -48,6 +49,7 @@
             android:background="@color/grey"
             android:layout_toRightOf="@id/vCenter"
             android:layout_below="@id/tvAntes"
+            android:id="@+id/ivFotoDepois"
             android:src="@drawable/ic_camera"/>
 
     </RelativeLayout>
@@ -62,14 +64,17 @@
             android:layout_height="wrap_content"
             android:text="Tipo do Problema:"/>
 
-        <Spinner
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:id="@+id/tvSelecionarTipoProblema"
+            android:hint="Selecione um Tipo de problema"/>
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Comentário sobre o problema"
+            android:id="@+id/etComentario"
             android:lines="3"/>
     </LinearLayout>
 
@@ -84,9 +89,11 @@
             android:layout_height="wrap_content"
             android:text="Status do Problema:"/>
 
-        <Spinner
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:id="@+id/tvSelecionarStatusProblema"
+            android:hint="Selecione o Status do problema"/>
 
     </LinearLayout>
 

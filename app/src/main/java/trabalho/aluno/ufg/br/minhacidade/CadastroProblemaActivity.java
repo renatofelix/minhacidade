@@ -71,18 +71,23 @@ public class CadastroProblemaActivity extends AppCompatActivity {
                 //salvar tipo na variavel problema
                 switch (i) {
                     case 0:
+                        tvTipoProblema.setText(TipoProblema.FALTA_SINALIZACAO.toString());
                         problema.setTipoProblema(TipoProblema.FALTA_SINALIZACAO);
                         break;
                     case 1:
+                        tvTipoProblema.setText(TipoProblema.ENTULHO_TERRENO_BALDIO.toString());
                         problema.setTipoProblema(TipoProblema.ENTULHO_TERRENO_BALDIO);
                         break;
                     case 2:
+                        tvTipoProblema.setText(TipoProblema.BURACO.toString());
                         problema.setTipoProblema(TipoProblema.BURACO);
                         break;
                     case 3:
+                        tvTipoProblema.setText(TipoProblema.FALTA_ILUMINACAO.toString());
                         problema.setTipoProblema(TipoProblema.FALTA_ILUMINACAO);
                         break;
                     case 4:
+                        tvTipoProblema.setText(TipoProblema.NAO_RECOLHERAM_LIXO.toString());
                         problema.setTipoProblema(TipoProblema.NAO_RECOLHERAM_LIXO);
                         break;
                 }
@@ -187,7 +192,7 @@ public class CadastroProblemaActivity extends AppCompatActivity {
                    Place place = PlacePicker.getPlace(data, this);
                    String toastMsg = String.format("%s", place.getLatLng());
                    Log.d("lag", String.valueOf(place.getLatLng()));
-//                   Toast.makeText(this, toastMsg, Toast.LENGTH_LONG).show();
+                   Toast.makeText(this, toastMsg, Toast.LENGTH_LONG).show();
                    tvPlace.setText(place.getAddress());
                    break;
            }

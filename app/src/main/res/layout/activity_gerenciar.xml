@@ -10,7 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:id="@+id/rlCategoria">
+        android:id="@+id/rlCategoria"
+        android:layout_marginTop="10dp">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -23,7 +24,9 @@
             android:layout_height="wrap_content"
             android:id="@+id/tvSelecionarTipoProblema"
             android:text="Selecione uma Categoria"
-            android:layout_toRightOf="@id/tvCategoria"/>
+            android:layout_toRightOf="@id/tvCategoria"
+            android:textSize="17sp"
+            android:layout_marginLeft="20dp"/>
 
     </RelativeLayout>
 
@@ -31,6 +34,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/rlCategoria"
-        tools:listitem="@layout/rv_item_envios" />
+        android:id="@+id/rv_problemas"/>
 
 </RelativeLayout>

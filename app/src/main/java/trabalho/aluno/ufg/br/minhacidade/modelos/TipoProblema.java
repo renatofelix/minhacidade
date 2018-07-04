@@ -5,5 +5,20 @@ package trabalho.aluno.ufg.br.minhacidade.modelos;
  */
 
 public enum TipoProblema {
-    FALTA_SINALIZACAO, ENTULHO_TERRENO_BALDIO, BURACO, FALTA_ILUMINACAO, NAO_RECOLHERAM_LIXO
+    FALTA_SINALIZACAO ("Falta Sinalização"), ENTULHO_TERRENO_BALDIO ("Entulho no Terreno Baldio"), BURACO ("Buraco"), FALTA_ILUMINACAO ("Falta de iluminação"), NAO_RECOLHERAM_LIXO ("Não Recolheram o Lixo");
+
+    private final String name;
+
+    private TipoProblema(String s) {
+        name = s;
+    }
+
+    public boolean equalsName(String otherName) {
+        // (otherName == null) check is not needed because name.equals(null) returns false
+        return name.equals(otherName);
+    }
+
+    public String toString() {
+        return this.name;
+    }
 }

@@ -79,6 +79,14 @@ public class ProblemaActivity extends AppCompatActivity {
     private void initDados(Problema problema) {
         //Colcoar as views da tela para receber os dados doobjeto problema
         tvTipoProblema.setText(problema.getTipoProblema().toString());
+        tvComentario.setText(problema.getComentario());
+
+        Picasso.get().load(problema.getLinkImagem()).fit().into(ivFotoAntes);
+        if (ivFotoDepois.getVisibility() == View.VISIBLE) {
+            Picasso.get().load(problema.getLinkImagem()).fit().into(ivFotoDepois);
+        }
+
+        tvStatusProblema.setText("Status do Problema: " + problema.getTipoStatus().toString());
     }
 
     private void initViews(Problema problema) {
@@ -102,16 +110,6 @@ public class ProblemaActivity extends AppCompatActivity {
                 ivIconeStatusProblema.setImageDrawable(getResources().getDrawable(R.drawable.ic_check));
                 break;
         }
-
-        tvTipoProblema.setText(problema.getTipoProblema().toString());
-        tvComentario.setText(problema.getComentario());
-
-        Picasso.get().load(problema.getLinkImagem()).fit().into(ivFotoAntes);
-        if (ivFotoDepois.getVisibility() == View.VISIBLE) {
-            Picasso.get().load(problema.getLinkImagem()).fit().into(ivFotoDepois);
-        }
-
-        tvStatusProblema.setText("Status do Problema: " + problema.getTipoStatus().toString());
     }
 
     @OnClick(R.id.ivLocalizacao)
