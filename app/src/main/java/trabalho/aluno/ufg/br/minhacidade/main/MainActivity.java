@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private FragmentTransaction transaction;
 
     public boolean usuarioLogado = false;
+
 //    private User usuario;
     private Usuario usuario = new Usuario();
 
@@ -59,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
+        verificaUsuarioLogado();
         initFab();
         initBottomNavigationView();
     }
@@ -76,11 +78,23 @@ public class MainActivity extends AppCompatActivity {
             String senha = sharedPref.getString(getString(R.string.senha),null);
             String login = sharedPref.getString(getString(R.string.email),null);
             String userType = sharedPref.getString(getString(R.string.usertype),null);
+            String nome = sharedPref.getString("Nome",null);
+            String photo = sharedPref.getString("Photo",null);
+            String email = sharedPref.getString("Email",null);
+            String cpf = sharedPref.getString("CPF",null);
+            String enviados = sharedPref.getString("Enviados",null);
+            String resolvidos = sharedPref.getString("Resolvidos",null);
 
             usuario.setLogin(login);
             usuario.setId(id);
             usuario.setUsertype(userType);
             usuario.setPassword(senha);
+            usuario.setNome(nome);
+            usuario.setPhoto(photo);
+            usuario.setEmail(email);
+            usuario.setCpf(cpf);
+            usuario.setEnviados(enviados);
+            usuario.setResolvidos(resolvidos);
 
             usuarioLogado = true;
         }
@@ -142,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Perfil", Toast.LENGTH_LONG).show();
 
                 intent = new Intent(this, PerfilActivity.class);
-//                intent.putExtra("usuario", usuario);
+                intent.putExtra("usuario", usuario);
                 startActivity(intent);
                 return true;
             case R.id.sair:

@@ -142,6 +142,12 @@ public class LoginFragment extends Fragment {
                 editor.putString(getString(R.string.senha), senha);
                 editor.putString(getString(R.string.id), usuarios.getId());
                 editor.putString(getString(R.string.usertype), usuarios.getUsertype());
+                editor.putString("Nome", usuarios.getNome());
+                editor.putString("Photo", usuarios.getPhoto());
+                editor.putString("Email",usuarios.getEmail());
+                editor.putString("CPF",usuarios.getCpf());
+                editor.putString("Enviados",usuarios.getEnviados());
+                editor.putString("Resolvidos", usuarios.getResolvidos());
 
                 editor.apply();
 

@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/tietEmail"
-            android:hint="Email"
+            android:hint="Login:"
             android:inputType="textEmailAddress"/>
     </android.support.design.widget.TextInputLayout>
 
@@ -33,7 +33,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/tietSenha"
-            android:hint="Senha"
+            android:hint="Senha:"
             android:inputType="textPassword"/>
     </android.support.design.widget.TextInputLayout>
 

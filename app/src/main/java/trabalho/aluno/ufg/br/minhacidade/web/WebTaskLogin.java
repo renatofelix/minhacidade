@@ -72,17 +72,18 @@ public class WebTaskLogin extends WebTaskBase {
             usuario.setUsertype(json_data.getString("usertype"));
             usuario.setPassword(json_data.getString("password"));
             usuario.setId(json_data.getString("id"));
+            usuario.setNome(json_data.getString("nome"));
+            usuario.setPhoto(json_data.getString("photo"));
+            usuario.setEmail(json_data.getString("id"));
+            usuario.setCpf(json_data.getString("cpf"));
+            usuario.setEnviados(json_data.getString("enviados"));
+            usuario.setResolvidos(json_data.getString("resolvidos"));
 
-            Log.i("log_tag", "login" + json_data.getString("login") +
-                    ", usertype" + json_data.getString("usertype") +
-                    ", password" + json_data.getString("password")
-            );
 
             user.add(usuario);
         }
             return user;
 
-        //usuario.setLogin(JsonUserArray.getString(0).toString());
 
     }
 

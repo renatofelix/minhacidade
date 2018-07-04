@@ -16,9 +16,6 @@ import trabalho.aluno.ufg.br.minhacidade.R;
 import trabalho.aluno.ufg.br.minhacidade.modelos.Problema;
 import trabalho.aluno.ufg.br.minhacidade.utils.RecyclerViewProject;
 
-/**
- * Created by Jonathas Eloi
- */
 
 public class MeusProblemasAdapter extends RecyclerViewProject<Problema> {
 

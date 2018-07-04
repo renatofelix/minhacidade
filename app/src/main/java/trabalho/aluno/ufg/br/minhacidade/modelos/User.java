@@ -8,6 +8,7 @@ public class User {
 
         private String token;
 
+
         public String getName() {
             return name;
         }

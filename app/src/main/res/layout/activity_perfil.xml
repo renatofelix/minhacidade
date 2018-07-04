@@ -22,6 +22,7 @@
             android:padding="5dp"
             android:src="@drawable/ic_mode_edit"
             android:layout_gravity="right"
+            android:id="@+id/ivEdit"
             android:layout_marginRight="20dp"/>
 
         <View
@@ -52,6 +53,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/tietNome"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
@@ -62,6 +64,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/tietEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textEmailAddress"
@@ -72,6 +75,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/tietCPF"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="CPF"
@@ -94,6 +98,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="18sp"
                     android:layout_marginTop="10dp"
+                    android:id="@+id/tvEnviados"
                     android:text="Enviados:"/>
 
                 <TextView
@@ -101,6 +106,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="18sp"
                     android:layout_marginTop="10dp"
+                    android:id="@+id/tvResolvidos"
                     android:text="Resolvidos:"/>
             </LinearLayout>
         </LinearLayout>
@@ -116,12 +122,6 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/btnMeusEnvios"
-                android:text="Meus Envios"/>
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:id="@+id/btnSalvar"
                 android:visibility="invisible"
                 android:text="Salvar"/>
@@ -131,8 +131,8 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/tvDeslogar"
                 android:padding="15dp"
-                android:layout_below="@id/btnMeusEnvios"
                 android:layout_centerInParent="true"
+                android:layout_below="@id/btnSalvar"
                 android:text="Deslogar"/>
 
 
